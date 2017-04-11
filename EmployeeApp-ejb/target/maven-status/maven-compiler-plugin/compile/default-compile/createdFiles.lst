@@ -8,9 +8,12 @@ com/mycompany/service/BackgroundCheckManagerBean.class
 com/mycompany/entity/Employee_.class
 com/mycompany/entity/Document_.class
 com/mycompany/service/EmployeeManagerBean.class
+com/mycompany/eao/BackgroundCheckServiceBean.class
 com/mycompany/entity/Document.class
 com/mycompany/service/DocumentManagerBean.class
 com/mycompany/entity/BackgroundCheck_.class
+com/mycompany/eao/EmployeeServiceBean.class
+com/mycompany/eao/DocumentServiceBean.class
 com/mycompany/NewSessionBean.class
 com/mycompany/entity/Employee.class
 com/mycompany/entity/BackgroundCheck.class

@@ -16,6 +16,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -56,17 +58,15 @@ public class Document implements Serializable {
     @Column(name = "documentNumber")
     private int documentNumber;
     @Size(max = 45)
-    @Column(name = "employeeId")
-    private Long employeeId;
+    @JoinColumn(name = "employeeId")
+    private Employee employeeId;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "documentReviewStatus")
     @Enumerated(EnumType.STRING)
     private EDocumentReviewStatus documentReviewStatus;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documentId")
-    private Collection<BackgroundCheck> backgroundCheckCollection;
-
+            
     public Document() {
     }
 
@@ -105,11 +105,11 @@ public class Document implements Serializable {
         this.documentNumber = documentNumber;
     }
 
-    public Long getEmployeeId() {
+    public Employee getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(Long employeeId) {
+    public void setEmployeeId(Employee employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -119,15 +119,6 @@ public class Document implements Serializable {
 
     public void setDocumentReviewStatus(EDocumentReviewStatus documentReviewStatus) {
         this.documentReviewStatus = documentReviewStatus;
-    }
-
-    @XmlTransient
-    public Collection<BackgroundCheck> getBackgroundCheckCollection() {
-        return backgroundCheckCollection;
-    }
-
-    public void setBackgroundCheckCollection(Collection<BackgroundCheck> backgroundCheckCollection) {
-        this.backgroundCheckCollection = backgroundCheckCollection;
     }
 
     @Override
