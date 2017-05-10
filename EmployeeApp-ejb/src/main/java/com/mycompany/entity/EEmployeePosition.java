@@ -15,6 +15,7 @@ public enum EEmployeePosition {
     TECH_TEAM_LEAD,
     PRODUCT_OWNER,
     JAVA_DEV,
+    SUPERVISOR,
     COOP_DEV,
-    QA_DEV;   
+    COOP_QA;   
 }

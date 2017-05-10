@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Ollivander´s Wand Store</title>
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    </h:head>
+
+    <h:body>
+        <h:outputText>Please find below all the currently active wand experts in this store</h:outputText>
+        <h2 class="sub-header">Current Employees</h2>
+        <h:form>
+            <h:commandButton id="newEmployee" value="Create New Employee" action="add" styleClass="btn form-button"/>
+        </h:form>
+        <br/>
+        <p:dataTable id="employeesTable"
+                     var="employee"
+                     value="#{employeeListController.employees}">
+            <p:column headerText="Name" id="employeeNameColumn">
+                <h:outputText value="#{employee.firstName} #{employee.lastName}"/>
+            </p:column>
+            <p:column headerText="Date of Birth" id="employeeDateOfBirthColumn">
+                <h:outputText value="#{employee.dateOfBirth}"/>
+            </p:column>
+            <p:column headerText="Country" id="employeeCountryColumn">
+                <h:outputText value="#{employee.country}"/>
+            </p:column>
+            <p:column headerText="Status" id="employeeStatusColumn">
+                <h:outputText value="#{employee.status}"/>
+            </p:column>
+            <p:column headerText="Start Date" id="employeeStartDateColumn">
+                <h:outputText value="#{employee.startDate}"/>
+            </p:column>
+            <p:column headerText="Department" id="employeeDepartmentColumn">
+                <h:outputText value="#{employee.department}"/>
+            </p:column>
+            <p:column headerText="Position" id="employeePositionColumn">
+                <h:outputText value="#{employee.position}"/>
+            </p:column>
+        </p:dataTable>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </h:body>
+</html>
+

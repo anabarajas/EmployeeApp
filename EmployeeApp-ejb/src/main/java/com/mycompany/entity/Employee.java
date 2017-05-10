@@ -26,6 +26,8 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
+import org.eclipse.persistence.annotations.ConversionValue;
+import org.eclipse.persistence.annotations.ObjectTypeConverter;
 
 /**
  *
@@ -97,7 +99,6 @@ public class Employee implements Serializable {
     private Date startDate;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId")
     private Collection<BackgroundCheck> backgroundCheckCollection;
-    public String getFirstName;
 
     public Employee() {
     }

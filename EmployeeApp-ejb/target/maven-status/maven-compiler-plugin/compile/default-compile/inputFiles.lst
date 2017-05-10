@@ -1,11 +1,10 @@
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/BackgroundCheckServiceBean.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/Document.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/DocumentManagerBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/DocumentManagerBean.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/EDocumentReviewStatus.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/BackgroundCheckManagerBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/IDocumentManagerBeanLocal.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/NewSessionBean.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/AbstractFacade.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/DocumentServiceBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/DocumentServiceBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/IEmployeeManagerBeanLocal.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/EDepartment.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/EEmployeePosition.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/EDocumentType.java
@@ -13,5 +12,9 @@
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/EBackgroundCheckStatus.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/Employee.java
 /Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/entity/BackgroundCheck.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/EmployeeServiceBean.java
-/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/EmployeeManagerBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/EmployeeServiceBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/BackgroundCheckManagerBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/service/BackgroundCheckServiceBean.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/IBackgroundCheckManagerLocal.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/AbstractFacade.java
+/Users/AnaCris/NetBeansProjects/mavenproject1/EmployeeApp/EmployeeApp-ejb/src/main/java/com/mycompany/eao/EmployeeManagerBean.java

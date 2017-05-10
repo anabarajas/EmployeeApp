@@ -3,11 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.service;
+package com.mycompany.eao;
 
 import com.mycompany.entity.BackgroundCheck;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -17,7 +20,7 @@ import javax.persistence.Query;
  * @author AnaCris
  */
 @Stateless
-public class BackgroundCheckManagerBean extends AbstractFacade<BackgroundCheck> {
+public class BackgroundCheckManagerBean extends AbstractFacade<BackgroundCheck> implements Serializable, IBackgroundCheckManagerLocal{
 
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
@@ -30,21 +33,23 @@ public class BackgroundCheckManagerBean extends AbstractFacade<BackgroundCheck> 
     public BackgroundCheckManagerBean() {
         super(BackgroundCheck.class);
     }
+    @Override
     public List<BackgroundCheck> findAllBackgroundChecks() {
         Query q = em.createNamedQuery("BackgroundCheck.findAll");
         return q.getResultList();
     }
     
+    @Override
     public BackgroundCheck findById(Integer id) {
         Query q = em.createNamedQuery("BackgroundCheck.findById");
         q.setParameter("id", id);
         return (BackgroundCheck) q.getSingleResult();
     }
     
+    @Override
     public BackgroundCheck findByStatus(String status) {
         Query q = em.createNamedQuery("BackgroundCheck.findByStatus");
         q.setParameter("status", status);
         return (BackgroundCheck) q.getSingleResult();
-    }
-    
+    }   
 }
