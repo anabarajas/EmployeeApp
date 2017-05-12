@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       >
     <h:head>
-        <title>Ollivander´s Wand Store</title>
+        <title>EmployeeApp</title>
         <!-- Bootstrap -->
         <link href="css/bootstrap.min.css" rel="stylesheet"/>
     </h:head>
@@ -21,6 +21,12 @@
         <p:dataTable id="employeesTable"
                      var="employee"
                      value="#{employeeListController.employees}">
+            <p:column headerText="Name" id="employeeIdColumn">
+                <h:commandLink id ="linkToEmployee" action="show">
+                    <f:param name="id" value="#{employee.id}"/>
+                    <h:outputText value="#{employee.id}"/>
+                </h:commandLink>
+            </p:column>
             <p:column headerText="Name" id="employeeNameColumn">
                 <h:outputText value="#{employee.firstName} #{employee.lastName}"/>
             </p:column>

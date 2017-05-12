@@ -5,12 +5,44 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:util="http://java.sun.com/jsf/composite/comps/util"
+      xmlns:comps="http://java.sun.com/jsf/composite/comps">
+<body>
+<util:pageHeading heading="#{content.calls}" id="pageHeadingShowEmployee"/>
+<h:commandLink id="backToList"
+               styleClass="btn"
+               action="list">
+    <i class="icon-list"/>
+    <h:outputText value="Back to List"/>
+</h:commandLink>
+
+<div class="row-fluid">
+    <div class="offset2 span8 ">
+        <div class="span6">
+            <dl class="dl-horizontal">
+                <dt><h:outputText value="Employee Name"/></dt>
+                <dd><h:outputText value="#{employeeShowController.employee.firstName} #{employeeShowController.employee.lastName}"/></dd>
+                <dt><h:outputText value="Country"/></dt>
+                <dd><h:outputText value="#{employeeShowController.employee.country}"/></dd>
+                <dt><h:outputText value="Status"/></dt>
+                <dd><h:outputText value="#{employeeShowController.employee.status}"/></dd>
+                <dt><h:outputText value="Position"/></dt>
+                <dd><h:outputText value="#{employeeShowController.employee.position}"/></dd>
+            </dl>
+        </div>
+        <div class="span6">
+            <dl class="dl-horizontal">
+                <dt><h:outputText value="Department"/></dt>
+                <dd><h:outputText value="#{employeeShowController.employee.department}"/></dd>
+                <dt><h:outputText value="Start Date"/></dt>
+                <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.startDate)}"/></dd>
+                <dt><h:outputText value="Date of Birth"/></dt>
+                <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.dateOfBirth)}"/></dd>
+            </dl>
+        </div>
+    </div>
+</div>
+</body>
 </html>
