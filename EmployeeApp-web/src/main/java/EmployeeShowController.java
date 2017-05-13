@@ -5,6 +5,9 @@
  */
 
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
+import com.mycompany.entity.EDepartment;
+import com.mycompany.entity.EEmployeePosition;
+import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
 import javax.annotation.PostConstruct;
@@ -32,8 +35,17 @@ public class EmployeeShowController implements Serializable{
     @Inject
     IEmployeeManagerBeanLocal employeeManagerBean;
 
-    private Employee employee;
 
+    private Employee employee;
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private Date dateOfBirth;
+    private String country;
+    private EEmployeeStatus status;
+    private EDepartment department;
+    private EEmployeePosition position;
+    private Date startDate;
 
     @PostConstruct
     public void init() {
@@ -45,6 +57,7 @@ public class EmployeeShowController implements Serializable{
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage());
+            JsfUtil.addErrorMessage("error fetching employee id" + id.toString());
         }
     }
 
@@ -53,7 +66,44 @@ public class EmployeeShowController implements Serializable{
         return dateFormat.format(date);
     }
 
+    public void addEmployee() {
+        Employee employee = new Employee(firstName, lastName, dateOfBirth, country, status, position, department, startDate);
+        employeeManagerBean.create(employee);
+    }
+
     public Employee getEmployee() {
         return employee;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public EEmployeeStatus getStatus() {
+        return status;
+    }
+
+    public EDepartment getDepartment() {
+        return department;
+    }
+
+    public EEmployeePosition getPosition() {
+        return position;
+    }
+
+    public Date getStartDate() {
+        return startDate;
     }
 }

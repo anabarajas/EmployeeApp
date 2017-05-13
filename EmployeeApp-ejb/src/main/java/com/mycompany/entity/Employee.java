@@ -107,8 +107,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(Long id, String firstName, String lastName, Date dateOfBirth, String country, EEmployeeStatus status, EEmployeePosition position, EDepartment department, Date startDate) {
-        this.id = id;
+    public Employee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeeStatus status, EEmployeePosition position, EDepartment department, Date startDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
