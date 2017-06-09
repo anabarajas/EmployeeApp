@@ -7,42 +7,48 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:util="http://java.sun.com/jsf/composite/comps/util"
-      xmlns:comps="http://java.sun.com/jsf/composite/comps">
+      xmlns:util="http://java.sun.com/jsf/composite/"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
-<util:pageHeading heading="#{content.calls}" id="pageHeadingShowEmployee"/>
-<h:commandLink id="backToList"
-               styleClass="btn"
-               action="list">
-    <i class="icon-list"/>
-    <h:outputText value="Back to List"/>
-</h:commandLink>
+<ui:composition template="template.xhtml">
 
-<div class="row-fluid">
-    <div class="offset2 span8">
-        <div class="span6">
-            <dl class="dl-horizontal">
-                <dt><h:outputText value="Employee Name"/></dt>
-                <dd><h:outputText value="#{employeeShowController.employee.firstName} #{employeeShowController.employee.lastName}"/></dd>
-                <dt><h:outputText value="Country"/></dt>
-                <dd><h:outputText value="#{employeeShowController.employee.country}"/></dd>
-                <dt><h:outputText value="Status"/></dt>
-                <dd><h:outputText value="#{employeeShowController.employee.status}"/></dd>
-                <dt><h:outputText value="Position"/></dt>
-                <dd><h:outputText value="#{employeeShowController.employee.position}"/></dd>
-            </dl>
+    <ui:define name="content">
+        <h:form>
+            <h:commandLink id="backToList"
+                           styleClass="btn"
+                           action="list">
+                <i class="icon-list"/>
+                <h:outputText value="Back to List"/>
+            </h:commandLink>
+        </h:form>
+        <div class="row-fluid">
+            <div class="offset2 span8">
+                <div class="span6">
+                    <dl class="dl-horizontal">
+                        <dt><h:outputText value="Employee Name"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.employee.firstName} #{employeeShowController.employee.lastName}"/></dd>
+                        <dt><h:outputText value="Country"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.employee.country}"/></dd>
+                        <dt><h:outputText value="Status"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.employee.status}"/></dd>
+                        <dt><h:outputText value="Position"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.employee.position}"/></dd>
+                    </dl>
+                </div>
+                <div class="span6">
+                    <dl class="dl-horizontal">
+                        <dt><h:outputText value="Department"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.employee.department}"/></dd>
+                        <dt><h:outputText value="Start Date"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.startDate)}"/></dd>
+                        <dt><h:outputText value="Date of Birth"/></dt>
+                        <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.dateOfBirth)}"/></dd>
+                    </dl>
+                </div>
+            </div>
         </div>
-        <div class="span6">
-            <dl class="dl-horizontal">
-                <dt><h:outputText value="Department"/></dt>
-                <dd><h:outputText value="#{employeeShowController.employee.department}"/></dd>
-                <dt><h:outputText value="Start Date"/></dt>
-                <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.startDate)}"/></dd>
-                <dt><h:outputText value="Date of Birth"/></dt>
-                <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.dateOfBirth)}"/></dd>
-            </dl>
-        </div>
-    </div>
-</div>
+    </ui:define>
+
+</ui:composition>
 </body>
 </html>

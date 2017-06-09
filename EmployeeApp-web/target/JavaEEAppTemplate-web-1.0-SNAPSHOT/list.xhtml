@@ -15,37 +15,56 @@
         <h:outputText>Please find below all the currently active wand experts in this store</h:outputText>
         <h2 class="sub-header">Current Employees</h2>
         <h:form>
-            <h:commandButton id="newEmployee" value="Create New Employee" action="add" styleClass="btn form-button"/>
+            <h:commandButton id="newEmployee"
+                             value="Create New Employee"
+                             action="add"
+                             styleClass="btn form-button"/>
         </h:form>
         <br/>
         <p:dataTable id="employeesTable"
                      var="employee"
                      value="#{employeeListController.employees}">
-            <p:column headerText="Name" id="employeeIdColumn">
-                <h:link outcome="show">
-                    <f:param name="id" value="#{employee.id}"/>
-                    <h:outputText value="#{employee.id}"/>
-                </h:link>
+            <p:column headerText="Employee Id" id="employeeIdColumn">
+                <h:form>
+                    <h:commandLink id ="linkToEmployee" action="show">
+                        <f:param name="id" value="#{employee.id}"/>
+                        <h:outputText value="#{employee.id}"/>
+                    </h:commandLink>
+                </h:form>
             </p:column>
-            <p:column headerText="Name" id="employeeNameColumn">
-                <h:outputText value="#{employee.firstName} #{employee.lastName}"/>
+            <p:column headerText="Name"
+                      sortBy="#{employee.lastName}"
+                      id="employeeNameColumn">
+                <h:outputText value="#{employee.lastName}, #{employee.firstName}"/>
             </p:column>
-            <p:column headerText="Date of Birth" id="employeeDateOfBirthColumn">
+            <p:column headerText="Date of Birth"
+                      sortBy="#{employee.dateOfBirth}"
+                      id="employeeDateOfBirthColumn">
                 <h:outputText value="#{employee.dateOfBirth}"/>
             </p:column>
-            <p:column headerText="Country" id="employeeCountryColumn">
+            <p:column headerText="Country"
+                      sortBy="#{employee.country}"
+                      id="employeeCountryColumn">
                 <h:outputText value="#{employee.country}"/>
             </p:column>
-            <p:column headerText="Status" id="employeeStatusColumn">
+            <p:column headerText="Status"
+                      sortBy="#{employee.status}"
+                      id="employeeStatusColumn">
                 <h:outputText value="#{employee.status}"/>
             </p:column>
-            <p:column headerText="Start Date" id="employeeStartDateColumn">
+            <p:column headerText="Start Date"
+                      sortBy="#{employee.startDate}"
+                      id="employeeStartDateColumn">
                 <h:outputText value="#{employee.startDate}"/>
             </p:column>
-            <p:column headerText="Department" id="employeeDepartmentColumn">
+            <p:column headerText="Department"
+                      sortBy="#{employee.department}"
+                      id="employeeDepartmentColumn">
                 <h:outputText value="#{employee.department}"/>
             </p:column>
-            <p:column headerText="Position" id="employeePositionColumn">
+            <p:column headerText="Position"
+                      sortBy="#{employee.position}"
+                      id="employeePositionColumn">
                 <h:outputText value="#{employee.position}"/>
             </p:column>
         </p:dataTable>

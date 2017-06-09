@@ -24,11 +24,13 @@
         <p:dataTable id="employeesTable"
                      var="employee"
                      value="#{employeeListController.employees}">
-            <p:column headerText="Name" id="employeeIdColumn">
-                <h:commandLink id ="linkToEmployee" action="show">
-                    <f:param name="id" value="#{employee.id}"/>
-                    <h:outputText value="#{employee.id}"/>
-                </h:commandLink>
+            <p:column headerText="Employee Id" id="employeeIdColumn">
+                <h:form>
+                    <h:commandLink id ="linkToEmployee" action="show">
+                        <f:param name="id" value="#{employee.id}"/>
+                        <h:outputText value="#{employee.id}"/>
+                    </h:commandLink>
+                </h:form>
             </p:column>
             <p:column headerText="Name"
                       sortBy="#{employee.lastName}"

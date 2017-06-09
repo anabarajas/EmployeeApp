@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EmployeeApp.iml" filepath="$PROJECT_DIR$/.idea/EmployeeApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeApp-ear/JavaEEAppTemplate-ear.iml" filepath="$PROJECT_DIR$/EmployeeApp-ear/JavaEEAppTemplate-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeApp-ejb/JavaEEAppTemplate-ejb.iml" filepath="$PROJECT_DIR$/EmployeeApp-ejb/JavaEEAppTemplate-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EmployeeApp-web/JavaEEAppTemplate-web.iml" filepath="$PROJECT_DIR$/EmployeeApp-web/JavaEEAppTemplate-web.iml" />
     </modules>
   </component>
 </project>
