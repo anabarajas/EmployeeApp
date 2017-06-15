@@ -1,0 +1,28 @@
+# java specific
+*.class
+
+# netbeans ignore personal stuff and jrebel 
+nbproject/private/
+rebel.xml
+rebel-remote.xml
+
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+# Maven related files
+/target/
+/*/target/
+
+# EJB - Log files
+/ejb/derby.log
+
+# Intellij
+*.iml
+.idea/*
+!.idea/runConfigurations/
+/atlassian-ide-plugin.xml
+.surefire-*

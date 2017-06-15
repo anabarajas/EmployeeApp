@@ -4,74 +4,75 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      >
-    <h:head>
-        <title>EmployeeApp</title>
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet"/>
-    </h:head>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 
-    <h:body>
-        <h:outputText>Please find below all the currently active wand experts in this store</h:outputText>
-        <h2 class="sub-header">Current Employees</h2>
-        <h:form>
-            <h:commandButton id="newEmployee"
-                             value="Create New Employee"
-                             action="add"
-                             styleClass="btn form-button"/>
-        </h:form>
-        <br/>
-        <p:dataTable id="employeesTable"
-                     var="employee"
-                     value="#{employeeListController.employees}">
-            <p:column headerText="Employee Id" id="employeeIdColumn">
-                <h:form>
-                    <h:commandLink id ="linkToEmployee" action="show">
-                        <f:param name="id" value="#{employee.id}"/>
-                        <h:outputText value="#{employee.id}"/>
-                    </h:commandLink>
-                </h:form>
-            </p:column>
-            <p:column headerText="Name"
-                      sortBy="#{employee.lastName}"
-                      id="employeeNameColumn">
-                <h:outputText value="#{employee.lastName}, #{employee.firstName}"/>
-            </p:column>
-            <p:column headerText="Date of Birth"
-                      sortBy="#{employee.dateOfBirth}"
-                      id="employeeDateOfBirthColumn">
-                <h:outputText value="#{employee.dateOfBirth}"/>
-            </p:column>
-            <p:column headerText="Country"
-                      sortBy="#{employee.country}"
-                      id="employeeCountryColumn">
-                <h:outputText value="#{employee.country}"/>
-            </p:column>
-            <p:column headerText="Status"
-                      sortBy="#{employee.status}"
-                      id="employeeStatusColumn">
-                <h:outputText value="#{employee.status}"/>
-            </p:column>
-            <p:column headerText="Start Date"
-                      sortBy="#{employee.startDate}"
-                      id="employeeStartDateColumn">
-                <h:outputText value="#{employee.startDate}"/>
-            </p:column>
-            <p:column headerText="Department"
-                      sortBy="#{employee.department}"
-                      id="employeeDepartmentColumn">
-                <h:outputText value="#{employee.department}"/>
-            </p:column>
-            <p:column headerText="Position"
-                      sortBy="#{employee.position}"
-                      id="employeePositionColumn">
-                <h:outputText value="#{employee.position}"/>
-            </p:column>
-        </p:dataTable>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
-    </h:body>
+<h:body>
+    <ui:composition template="template.xhtml">
+        <ui:define name="title">EmployeeApp</ui:define>
+        <ui:define name="pageTitle">Current Employees</ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h:commandButton id="newEmployee"
+                                 value="Create New Employee"
+                                 action="add"
+                                 styleClass="btn form-button"/>
+            </h:form>
+            <br/>
+            <p:dataTable id="employeesTable"
+                         var="employee"
+                         value="#{employeeListController.employees}">
+                <p:column headerText="Employee Id" id="employeeIdColumn">
+                    <h:form>
+                        <h:commandLink id ="linkToEmployee" action="show">
+                            <f:param name="id" value="#{employee.id}"/>
+                            <h:outputText value="#{employee.id}"/>
+                        </h:commandLink>
+                    </h:form>
+                </p:column>
+                <p:column headerText="Name"
+                          sortBy="#{employee.lastName}"
+                          id="employeeNameColumn">
+                    <h:outputText value="#{employee.lastName}, #{employee.firstName}"/>
+                </p:column>
+                <p:column headerText="Date of Birth"
+                          sortBy="#{employee.dateOfBirth}"
+                          id="employeeDateOfBirthColumn">
+                    <h:outputText value="#{employee.dateOfBirth}"/>
+                </p:column>
+                <p:column headerText="Country"
+                          sortBy="#{employee.country}"
+                          id="employeeCountryColumn">
+                    <h:outputText value="#{employee.country}"/>
+                </p:column>
+                <p:column headerText="Status"
+                          sortBy="#{employee.status}"
+                          id="employeeStatusColumn">
+                    <h:outputText value="#{employee.status}"/>
+                </p:column>
+                <p:column headerText="Start Date"
+                          sortBy="#{employee.startDate}"
+                          id="employeeStartDateColumn">
+                    <h:outputText value="#{employee.startDate}"/>
+                </p:column>
+                <p:column headerText="Department"
+                          sortBy="#{employee.department}"
+                          id="employeeDepartmentColumn">
+                    <h:outputText value="#{employee.department}"/>
+                </p:column>
+                <p:column headerText="Position"
+                          sortBy="#{employee.position}"
+                          id="employeePositionColumn">
+                    <h:outputText value="#{employee.position}"/>
+                </p:column>
+            </p:dataTable>
+        </ui:define>
+    </ui:composition>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+</h:body>
 </html>
 

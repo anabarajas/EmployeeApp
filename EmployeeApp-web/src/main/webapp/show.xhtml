@@ -11,16 +11,16 @@ and open the template in the editor.
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <body>
 <ui:composition template="template.xhtml">
-
+    <ui:define name="title">Employee</ui:define>
+    <ui:define name="pageTitle">Employee Profile</ui:define>
     <ui:define name="content">
         <h:form>
-            <h:commandLink id="backToList"
-                           styleClass="btn"
-                           action="list">
-                <i class="icon-list"/>
-                <h:outputText value="Back to List"/>
-            </h:commandLink>
+            <h:commandButton id="backToList"
+                             value="Back to List"
+                             action="list"
+                             styleClass="btn form-button"/>
         </h:form>
+        <br/>
         <div class="row-fluid">
             <div class="offset2 span8">
                 <div class="span6">
