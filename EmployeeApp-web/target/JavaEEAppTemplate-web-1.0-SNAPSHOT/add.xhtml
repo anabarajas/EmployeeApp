@@ -11,138 +11,104 @@
 
         <ui:define name="content">
             <div class="search-field-container pf">
-                <div class="container-fluid">
-
-                    <div class="row-fluid">
-                        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                            <h1 class="page-header">Create New Employee</h1>
+            <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="firstNameLabel"
+                                       value="First Name:"
+                                       styleClass="control-label"
+                                       for="firstName"/>
+                        <div class="controls">
+                            <h:inputText id="firstName"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.firstName}"/>
                         </div>
-                    </div>
-
-                    <div class="row-fluid">
-
-                        <div class ="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="firstNameLabel"
-                                               value="First Name"
-                                               styleClass="control-label"
-                                               for="firstName"/>
-                                <div class="controls">
-                                    <h:inputText id="firstName"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.firstName}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="lastNameLabel"
-                                               value="Last Name"
-                                               styleClass="control-label"
-                                               for="lastName"/>
-                                <div class="controls">
-                                    <h:inputText id="lastName"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.lastName}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="statusLabel"
-                                               value="Status"
-                                               styleClass="control-label"
-                                               for="status"/>
-                                <div class="controls">
-                                    <h:inputText id="status"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.status}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="dateOfBirthLabel"
-                                               value="Date of Birth"
-                                               styleClass="control-label"
-                                               for="dateOfBirth"/>
-                                <div class="controls">
-                                    <h:inputText id="dateOfBirth"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.dateOfBirth}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="departmentLabel"
-                                               value="Department"
-                                               styleClass="control-label"
-                                               for="department"/>
-                                <div class="controls">
-                                    <h:inputText id="department"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.department}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="positionLabel"
-                                               value="Position"
-                                               styleClass="control-label"
-                                               for="position"/>
-                                <div class="controls">
-                                    <h:inputText id="position"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.position}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="startDateLabel"
-                                               value="Start Date"
-                                               styleClass="control-label"
-                                               for="startDate"/>
-                                <div class="controls">
-                                    <h:inputText id="startDate"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.startDate}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                        <div class="span4">
-                            <h:panelGroup layout="block">
-                                <h:outputLabel id="countryLabel"
-                                               value="Country"
-                                               styleClass="control-label"
-                                               for="country"/>
-                                <div class="controls">
-                                    <h:inputText id="country"
-                                                 styleClass="search-field"
-                                                 value="#{employeeShowController.country}"/>
-                                </div>
-                            </h:panelGroup>
-                        </div>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="form-actions">
-                            <h:commandButton id="searchButton"
-                                             action="#{employeeShowController.addEmployee}"
-                                             styleClass="btn btn-primary"
-                                             value="Create" />
-                        </div>
-                    </div>
+                    </h:panelGroup>
                 </div>
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="lastNameLabel"
+                                       value="Last Name:"
+                                       styleClass="control-label"
+                                       for="lastName"/>
+                        <div class="controls">
+                            <h:inputText id="lastName"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.lastName}"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="departmentLabel"
+                                       value="Department:"
+                                       styleClass="control-label"
+                                       for="department"/>
+                        <div class="controls">
+                            <h:inputText id="department"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.department}"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="dateOfBirthLabel"
+                                       value="Date of Birth:"
+                                       styleClass="control-label"
+                                       for="dateOfBirth"/>
+                        <div class="controls">
+                            <h:inputText id="dateOfBirth"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.dateOfBirth}"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="positionLabel"
+                                       value="Position"
+                                       styleClass="control-label"
+                                       for="position"/>
+                        <div class="controls">
+                            <h:inputText id="position"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.position}"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="span4">
+                    <h:panelGroup layout="block">
+                        <h:outputLabel id="countryLabel"
+                                       value="Country:"
+                                       styleClass="control-label"
+                                       for="country"/>
+                        <div class="controls">
+                            <h:inputText id="country"
+                                         styleClass="search-field"
+                                         value="#{employeeShowController.country}"/>
+                        </div>
+                    </h:panelGroup>
+                </div>
+            </div>
+
+            <div class="row-fluid">
+                <div class="form-actions">
+                    <h:commandButton id="addEmployee"
+                                     action="#{employeeShowController.addNewEmployee}"
+                                     styleClass="btn btn-primary"
+                                     value="Create" />
+                </div>
+            </div>
+            </div>
             </div>
         </ui:define>
     </ui:composition>

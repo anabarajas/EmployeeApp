@@ -66,8 +66,8 @@ public class EmployeeShowController implements Serializable{
         return dateFormat.format(date);
     }
 
-    public void addEmployee() {
-        Employee employee = new Employee(firstName, lastName, dateOfBirth, country, status, position, department, startDate);
+    public void addNewEmployee() {
+        Employee employee = new Employee(firstName, lastName, dateOfBirth, country, position, department);
         employeeManagerBean.create(employee);
     }
 
