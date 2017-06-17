@@ -8,7 +8,8 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:util="http://java.sun.com/jsf/composite/"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui">
 <body>
 <ui:composition template="template.xhtml">
     <ui:define name="title">Employee</ui:define>
@@ -26,27 +27,35 @@ and open the template in the editor.
                 <div class="span6">
                     <dl class="dl-horizontal">
                         <dt><h:outputText value="Employee Name"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.employee.firstName} #{employeeShowController.employee.lastName}"/></dd>
-                        <dt><h:outputText value="Country"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.employee.country}"/></dd>
+                        <dd><h:outputText value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}"/></dd>
+                        <dt><h:outputText value="Employee Id"/></dt>
+                        <dd><h:outputText value="#{employeeController.employee.id}"/></dd>
                         <dt><h:outputText value="Status"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.employee.status}"/></dd>
+                        <dd><h:outputText value="#{employeeController.employee.status}"/></dd>
                         <dt><h:outputText value="Position"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.employee.position}"/></dd>
+                        <dd><h:outputText value="#{employeeController.employee.position}"/></dd>
                     </dl>
                 </div>
                 <div class="span6">
                     <dl class="dl-horizontal">
                         <dt><h:outputText value="Department"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.employee.department}"/></dd>
+                        <dd><h:outputText value="#{employeeController.employee.department}"/></dd>
                         <dt><h:outputText value="Start Date"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.startDate)}"/></dd>
+                        <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.startDate)}"/></dd>
                         <dt><h:outputText value="Date of Birth"/></dt>
-                        <dd><h:outputText value="#{employeeShowController.formatDate(employeeShowController.employee.dateOfBirth)}"/></dd>
+                        <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.dateOfBirth)}"/></dd>
+                        <dt><h:outputText value="Country"/></dt>
+                        <dd><h:outputText value="#{employeeController.employee.country}"/></dd>
                     </dl>
                 </div>
             </div>
         </div>
+        <h:form>
+            <h:commandButton id="updateEmployee"
+                             value="Update"
+                             action="update"
+                             styleClass="btn btn-primary"/>
+        </h:form>
     </ui:define>
 
 </ui:composition>

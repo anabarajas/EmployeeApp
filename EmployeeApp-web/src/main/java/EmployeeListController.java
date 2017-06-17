@@ -1,14 +1,14 @@
 
-import com.mycompany.entity.Employee;
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
-import java.io.Serializable;
-import java.util.ArrayList;
-import javax.ejb.EJB;
-import javax.inject.Named;
-import java.util.List;
+import com.mycompany.entity.Employee;
+
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,8 +39,5 @@ public class EmployeeListController implements Serializable {
     public List<Employee> getEmployees() {
         return employees;
     }
-    
-//    public void addEmployee() {
-//        employeeManagerBean.create
-//    }
+
 }

@@ -8,21 +8,7 @@ package com.mycompany.entity;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlTransient;
@@ -97,8 +83,9 @@ public class Employee implements Serializable {
     @Column(name = "startDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employeeId")
-    private Collection<BackgroundCheck> backgroundCheckCollection;
+    @OneToOne
+    private BackgroundCheck backgroundCheck;
+
 
     public Employee() {
     }
