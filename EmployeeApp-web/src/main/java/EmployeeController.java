@@ -5,9 +5,9 @@
  */
 
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
+import com.mycompany.entity.Document;
 import com.mycompany.entity.EDepartment;
 import com.mycompany.entity.EEmployeePosition;
-import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
 import javax.annotation.PostConstruct;
@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,23 +27,21 @@ import java.util.logging.Logger;
  *
  * @author AnaCris
  */
-@Named(value="employeeShowController")
+@Named(value="employeeController")
 @SessionScoped
-public class EmployeeShowController implements Serializable{
+public class EmployeeController implements Serializable{
 
-    private static final Logger LOG = Logger.getLogger(EmployeeShowController.class.getName());
+    private static final Logger LOG = Logger.getLogger(EmployeeController.class.getName());
 
     @Inject
     IEmployeeManagerBeanLocal employeeManagerBean;
 
 
     private Employee employee;
-    private Integer id;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
     private String country;
-    private EEmployeeStatus status;
     private EDepartment department;
     private EEmployeePosition position;
     private Date startDate;
@@ -66,9 +65,30 @@ public class EmployeeShowController implements Serializable{
         return dateFormat.format(date);
     }
 
-    public void addNewEmployee() {
+    public List<Document> getEmployeeDocuments()
+
+    public String addNewEmployee() {
         Employee employee = new Employee(firstName, lastName, dateOfBirth, country, position, department);
         employeeManagerBean.create(employee);
+        this.employee = employee;
+        return "show";
+    }
+
+    public void updateEmployee(Employee employee) {
+        employeeManagerBean.edit(employee);
+    }
+
+    public void deleteEmployee(Employee employee) {
+        employeeManagerBean.remove(employee);
+    }
+
+    public void resetEmployeeFormFields() {
+        this.firstName = null;
+        this.lastName = null;
+        this.dateOfBirth = null;
+        this.country = null;
+        this.position = null;
+        this.department = null;
     }
 
     public Employee getEmployee() {
@@ -89,10 +109,6 @@ public class EmployeeShowController implements Serializable{
 
     public String getCountry() {
         return country;
-    }
-
-    public EEmployeeStatus getStatus() {
-        return status;
     }
 
     public EDepartment getDepartment() {

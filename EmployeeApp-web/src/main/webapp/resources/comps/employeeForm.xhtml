@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xml:lang="en" lang="en"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:b="http://bootsfaces.net/ui">
+
+<composite:interface>
+    <composite:attribute name="employeeId" type="java.lang.String" required="false"/>
+    <composite:attribute name="employeeFirstNameField" type="java.lang.String" required="true"/>
+    <composite:attribute name="employeeLastNameField" type="java.lang.String" required="true"/>
+    <composite:attribute name="employeeDateOfBirth" type="java.util.Date" required="true"/>
+    <composite:attribute name="employeeCountryOfBirth" type="java.lang.String" required="true"/>
+    <composite:attribute name="employeeStartDate" type="java.lang.Date" required="false"/>
+    <composite:attribute name="employeeStatus" type="java.lang.Date" required="false"/>
+    <composite:attribute name="employeeDepartment" type="java.lang.String" required="true"/>
+    <composite:attribute name="employeePosition" type="java.lang.String" required="true"/>
+    <composite:attribute name="isUpdatingEmployee" type="java.lang.Boolean" required="true"/>
+    <composite:attribute name="employeeIsInternational" type="java.lang.Boolean" required="true"/>
+    <composite:attribute name="employeeDocuments" type="java.lang.Object" required="false"/>
+
+<composite:implementation>
+    <b:form inline="true">
+        <b:row>
+            <b:inputText span="2"
+                         placeholder="First Name"
+                         label="First Name:"
+                         value="#{cc.attrs.employeeFirstNameField}"/>
+
+            <b:inputText span="2"
+                         placeholder="Last Name"
+                         label="Last Name:"
+                         value="#{cc.attrs.employeeLastNameField}"/>
+        </b:row>
+        <b:row>
+            <b:inputText span="2"
+                         placeholder="Date of Birth"
+                         label="Date of Birth:"
+                         value="#{cc.attrs.employeeDateOfBirth}">
+            </b:inputText>
+            <b:inputText span="2"
+                         placeholder="Country of Birth"
+                         label="Country of Birth:"
+                         value="#{cc.attrs.employeeCountryOfBirth}">
+            </b:inputText>
+        </b:row>
+        <b:row>
+            <p:outputLabel for="employeeStartDate" value="Start Date:" />
+            <p:calendar id="employeeStartDate" value="#{cc.attrs.employeeStartDate}" pattern="-yyyy-MM-dd" mask="true" />
+            <b:dropMenu value="Status" rendered="#{cc.attrs.isUpdatingEmployee}">
+                <h:outputText value="#{cc.attrs.employeeStartDate}"/>
+            </b:dropMenu>
+        </b:row>
+        <b:row>
+            <b:dropMenu value="Department">
+                <h:outputText value="#{cc.attrs.employeeDepartment}"/>
+            </b:dropMenu>
+            <b:dropMenu value="Position">
+                <h:outputText value="#{cc.attrs.employeePosition}"/>
+            </b:dropMenu>
+        </b:row>
+    </b:form>
+
+</composite:implementation>
+
+</html>
