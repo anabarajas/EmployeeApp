@@ -24,5 +24,4 @@ rebel-remote.xml
 *.iml
 .idea/*
 !.idea/runConfigurations/
-/atlassian-ide-plugin.xml
 .surefire-*
