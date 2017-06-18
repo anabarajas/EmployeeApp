@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="ear" name="JavaEEAppTemplate-ear:ear">
-    <output-path>$PROJECT_DIR$/EmployeeApp-ear/target</output-path>
-    <root id="archive" name="JavaEEAppTemplate-ear-1.0-SNAPSHOT.ear">
-      <element id="artifact" artifact-name="JavaEEAppTemplate-ear:ear exploded" />
-    </root>
-  </artifact>
-</component>
