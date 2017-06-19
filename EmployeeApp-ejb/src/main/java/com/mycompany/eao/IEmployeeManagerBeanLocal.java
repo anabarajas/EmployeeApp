@@ -29,7 +29,7 @@ public interface IEmployeeManagerBeanLocal {
     
     List<Employee> findAllEmployees();
     
-    Employee findById(Integer id);
+    Employee findById(Long id);
     
     Employee findByFirstName(String firstName);
     

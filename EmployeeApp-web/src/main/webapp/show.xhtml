@@ -15,68 +15,58 @@ and open the template in the editor.
     <ui:define name="title">Employee</ui:define>
     <ui:define name="pageTitle">Employee Profile</ui:define>
     <ui:define name="content">
-        <h:form>
-            <h:commandButton id="backToList"
-                             value="Back to List"
-                             action="list"
-                             styleClass="btn form-button"/>
-        </h:form>
-        <br/>
-        <div class="row-fluid">
-            <div class="offset2 span8">
-                <div class="span6">
-                    <dl class="dl-horizontal">
-                        <dt><h:outputText value="Employee Name"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}"/></dd>
-                        <dt><h:outputText value="Employee Id"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.id}"/></dd>
-                        <dt><h:outputText value="Status"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.status}"/></dd>
-                        <dt><h:outputText value="Position"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.position}"/></dd>
-                    </dl>
-                </div>
-                <div class="span6">
-                    <dl class="dl-horizontal">
-                        <dt><h:outputText value="Department"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.department}"/></dd>
-                        <dt><h:outputText value="Start Date"/></dt>
-                        <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.startDate)}"/></dd>
-                        <dt><h:outputText value="Date of Birth"/></dt>
-                        <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.dateOfBirth)}"/></dd>
-                        <dt><h:outputText value="Country"/></dt>
-                        <dd><h:outputText value="#{employeeController.employee.country}"/></dd>
-                    </dl>
-                </div>
+        <div class="row">
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt><h:outputText value="Employee Name: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}"/></dd>
+                    <dt><h:outputText value="Employee Id: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.id}"/></dd>
+                    <dt><h:outputText value="Status: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.status}"/></dd>
+                    <dt><h:outputText value="Position: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.position}"/></dd>
+                </dl>
+            </div>
+            <div class="col-md-6">
+                <dl class="dl-horizontal">
+                    <dt><h:outputText value="Department: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.department}"/></dd>
+                    <dt><h:outputText value="Start Date: "/></dt>
+                    <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.startDate)}"/></dd>
+                    <dt><h:outputText value="Date of Birth: "/></dt>
+                    <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.dateOfBirth)}"/></dd>
+                    <dt><h:outputText value="Country: "/></dt>
+                    <dd><h:outputText value="#{employeeController.employee.country}"/></dd>
+                </dl>
             </div>
         </div>
         <br />
-        <b:row rendered="#{cc.attrs.employeeIsInternational}">
-            <h2>Available Documents</h2>
-            <b:dataTable value="#{employeeController.employee.backgroundCheckCollection}" var="document">
-                <b:dataTableColumn label="Id" value="#{}"/>
-
-            </b:dataTable>
-
-        </b:row>
-
         <div class="form-actions">
             <h:form>
+                <h:commandButton id="backToList"
+                                 value="Back to List"
+                                 action="#{employeeController.returnToList}"
+                                 styleClass="btn form-button"/>
                 <h:commandButton id="updateEmployee"
                                  value="Update"
                                  action="update"
                                  styleClass="btn btn-primary"/>
             </h:form>
-            <h:form>
-                <h:commandButton id="deleteEmployee"
-                                 value="Delete Employee"
-                                 action="#{employeeController.delete}"
-                                 styleClass="btn btn-primary"/>
-            </h:form>
         </div>
-
+        <hr/>
+        <div class="row">
+            <h3>Available Documents</h3>
+            <div class="col-md-10 col-md-offset-1">
+                <b:dataTable value="#{employeeController.employee.backgroundCheck.documentCollection}" var="document" rendered="#{!cc.attrs.employeeIsInternational}">
+                    <b:dataTableColumn label="Document Id" value="#{document.id}"/>
+                    <b:dataTableColumn label="Type" value="#{document.documentType}"/>
+                    <b:dataTableColumn label="Document Number" value="#{document.documentNumber}"/>
+                    <b:dataTableColumn label="Review Status" v1alue="#{document.documentReviewStatus}"/>
+                </b:dataTable>
+            </div>
+        </div>
     </ui:define>
-
 </ui:composition>
 </body>
 </html>

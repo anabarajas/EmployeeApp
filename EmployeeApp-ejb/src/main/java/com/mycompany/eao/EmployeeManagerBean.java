@@ -46,7 +46,7 @@ public class EmployeeManagerBean extends AbstractFacade<Employee> implements Ser
     }
     
     @Override
-    public Employee findById(Integer id) {
+    public Employee findById(Long id) {
         Query q = em.createNamedQuery("Employee.findById");
         q.setParameter("id", id);
         return (Employee) q.getSingleResult();
@@ -110,24 +110,4 @@ public class EmployeeManagerBean extends AbstractFacade<Employee> implements Ser
         q.setParameter("startDate", startDate);
         return (Employee) q.getSingleResult();
     }
-    
-    //    @Override
-//    public void create(Employee employee){
-//        if (alreadyExists(employee)) {
-//            LOG.log(Level.INFO, "This employee already exists [Employee no. {0}]", new Object[]{employee.getId()});
-//            throw new PersistenceException("Employee already exists");
-//        }
-//        try {
-//            Employee e = new Employee();
-//            e.setFirstName(employee.getFirstName);
-//            e.setLastName(employee.getLastName());
-//            //e.setDateofBirth()
-//        } catch (Exception e) {
-//        }
-//    }
-//    
-//    public boolean alreadyExists(Employee employee) {
-//        return false;
-//    }
-    
 }

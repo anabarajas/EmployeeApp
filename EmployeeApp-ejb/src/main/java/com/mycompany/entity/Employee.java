@@ -83,7 +83,7 @@ public class Employee implements Serializable {
     @Column(name = "startDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @OneToOne
+    @Transient
     private BackgroundCheck backgroundCheck;
 
 
@@ -188,13 +188,12 @@ public class Employee implements Serializable {
         this.startDate = startDate;
     }
 
-    @XmlTransient
-    public Collection<BackgroundCheck> getBackgroundCheckCollection() {
-        return backgroundCheckCollection;
+    public BackgroundCheck getBackgroundCheck() {
+        return backgroundCheck;
     }
 
-    public void setBackgroundCheckCollection(Collection<BackgroundCheck> backgroundCheckCollection) {
-        this.backgroundCheckCollection = backgroundCheckCollection;
+    public void setBackgroundCheck(BackgroundCheck backgroundCheck) {
+        this.backgroundCheck = backgroundCheck;
     }
 
     @Override

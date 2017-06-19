@@ -4,65 +4,77 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xml:lang="en" lang="en"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xml:lang="en" lang="en"
       xmlns:composite="http://java.sun.com/jsf/composite"
       xmlns:b="http://bootsfaces.net/ui">
 
 <composite:interface>
-    <composite:attribute name="employeeId" type="java.lang.String" required="false"/>
+    <composite:attribute name="employeeId" type="java.lang.Long" required="false"/>
     <composite:attribute name="employeeFirstNameField" type="java.lang.String" required="true"/>
     <composite:attribute name="employeeLastNameField" type="java.lang.String" required="true"/>
     <composite:attribute name="employeeDateOfBirth" type="java.util.Date" required="true"/>
     <composite:attribute name="employeeCountryOfBirth" type="java.lang.String" required="true"/>
-    <composite:attribute name="employeeStartDate" type="java.lang.Date" required="false"/>
-    <composite:attribute name="employeeStatus" type="java.lang.Date" required="false"/>
+    <composite:attribute name="employeeStartDate" type="java.util.Date" required="false"/>
+    <composite:attribute name="employeeStatus" type="java.lang.String" required="false"/>
     <composite:attribute name="employeeDepartment" type="java.lang.String" required="true"/>
     <composite:attribute name="employeePosition" type="java.lang.String" required="true"/>
     <composite:attribute name="isUpdatingEmployee" type="java.lang.Boolean" required="true"/>
     <composite:attribute name="employeeIsInternational" type="java.lang.Boolean" required="true"/>
     <composite:attribute name="employeeDocuments" type="java.lang.Object" required="false"/>
+</composite:interface>
 
 <composite:implementation>
-    <b:form inline="true">
-        <b:row>
-            <b:inputText span="2"
-                         placeholder="First Name"
-                         label="First Name:"
-                         value="#{cc.attrs.employeeFirstNameField}"/>
+    <h:form>
+        <b:panelGrid colSpans="6,6">
+            <b:panel>
+                <b:inputText placeholder="First Name"
+                             label="First Name:"
+                             value="#{cc.attrs.employeeFirstNameField}"/>
+                <b:inputText placeholder="Last Name"
+                             label="Last Name:"
+                             value="#{cc.attrs.employeeLastNameField}"/>
+                <b:dateTimePicker value="#{cc.attrs.employeeDateOfBirth}"
+                                  label="Date of Birth:"
+                                  allow-input-toggle="true"
+                                  show-date="true"
+                                  show-time="false"
+                                  mask="true"/>
+                <b:inputText placeholder="Country of Birth"
+                             label="Country of Birth:"
+                             value="#{cc.attrs.employeeCountryOfBirth}">
+                </b:inputText>
+                <b:dateTimePicker value="#{cc.attrs.employeeStartDate}"
+                                  label="Start Date:"
+                                  allow-input-toggle="true"
+                                  show-date="true"
+                                  show-time="false"
+                                  mask="true"/>
+            </b:panel>
+            <b:panel>
+                <div class="form-group">
+                <label for="employeeDepartmentDropDown">Department</label>
+                <b:dropButton value="Department" id="employeeDepartmentDropDown">
+                    <c:forEach items="#{employeeListController.allDeparments}" var="deparment">
+                        <b:navLink value="#{deparment}"></b:navLink>
+                    </c:forEach>
+                </b:dropButton>
+                </div>
+                <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Department
+                    <span class="caret"></span></button>
+                    <ul class="dropdownmenu">
+                        <c:forEach items="#{employeeListController.allDeparments}" var="deparment">
+                            <li>
+                                <h:inputText value="#{deparment}"/>
+                            </li>
+                        </c:forEach>
+                    </ul>
+                </div>
 
-            <b:inputText span="2"
-                         placeholder="Last Name"
-                         label="Last Name:"
-                         value="#{cc.attrs.employeeLastNameField}"/>
-        </b:row>
-        <b:row>
-            <b:inputText span="2"
-                         placeholder="Date of Birth"
-                         label="Date of Birth:"
-                         value="#{cc.attrs.employeeDateOfBirth}">
-            </b:inputText>
-            <b:inputText span="2"
-                         placeholder="Country of Birth"
-                         label="Country of Birth:"
-                         value="#{cc.attrs.employeeCountryOfBirth}">
-            </b:inputText>
-        </b:row>
-        <b:row>
-            <p:outputLabel for="employeeStartDate" value="Start Date:" />
-            <p:calendar id="employeeStartDate" value="#{cc.attrs.employeeStartDate}" pattern="-yyyy-MM-dd" mask="true" />
-            <b:dropMenu value="Status" rendered="#{cc.attrs.isUpdatingEmployee}">
-                <h:outputText value="#{cc.attrs.employeeStartDate}"/>
-            </b:dropMenu>
-        </b:row>
-        <b:row>
-            <b:dropMenu value="Department">
-                <h:outputText value="#{cc.attrs.employeeDepartment}"/>
-            </b:dropMenu>
-            <b:dropMenu value="Position">
-                <h:outputText value="#{cc.attrs.employeePosition}"/>
-            </b:dropMenu>
-        </b:row>
-    </b:form>
+            </b:panel>
+        </b:panelGrid>
+    </h:form>
 
 </composite:implementation>
 
