@@ -19,25 +19,25 @@ and open the template in the editor.
             <div class="col-md-6">
                 <dl class="dl-horizontal">
                     <dt><h:outputText value="Employee Name: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.firstName} #{employeeController.employee.lastName}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.firstName} #{showEmployeeController.employee.lastName}"/></dd>
                     <dt><h:outputText value="Employee Id: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.id}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.id}"/></dd>
                     <dt><h:outputText value="Status: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.status}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.status}"/></dd>
                     <dt><h:outputText value="Position: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.position}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.position}"/></dd>
                 </dl>
             </div>
             <div class="col-md-6">
                 <dl class="dl-horizontal">
                     <dt><h:outputText value="Department: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.department}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.department}"/></dd>
                     <dt><h:outputText value="Start Date: "/></dt>
-                    <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.startDate)}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.formatDate(showEmployeeController.employee.startDate)}"/></dd>
                     <dt><h:outputText value="Date of Birth: "/></dt>
-                    <dd><h:outputText value="#{employeeController.formatDate(employeeController.employee.dateOfBirth)}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.formatDate(showEmployeeController.employee.dateOfBirth)}"/></dd>
                     <dt><h:outputText value="Country: "/></dt>
-                    <dd><h:outputText value="#{employeeController.employee.country}"/></dd>
+                    <dd><h:outputText value="#{showEmployeeController.employee.country}"/></dd>
                 </dl>
             </div>
         </div>
@@ -46,7 +46,7 @@ and open the template in the editor.
             <h:form>
                 <h:commandButton id="backToList"
                                  value="Back to List"
-                                 action="#{employeeController.returnToList}"
+                                 action="#{showEmployeeController.returnToList}"
                                  styleClass="btn form-button"/>
                 <h:commandButton id="updateEmployee"
                                  value="Update"
@@ -58,7 +58,7 @@ and open the template in the editor.
         <div class="row">
             <h3>Available Documents</h3>
             <div class="col-md-10 col-md-offset-1">
-                <b:dataTable value="#{employeeController.employee.backgroundCheck.documentCollection}" var="document" rendered="#{!cc.attrs.employeeIsInternational}">
+                <b:dataTable value="#{showEmployeeController.employee.backgroundCheck.documentCollection}" var="document" rendered="#{!cc.attrs.employeeIsInternational}">
                     <b:dataTableColumn label="Document Id" value="#{document.id}"/>
                     <b:dataTableColumn label="Type" value="#{document.documentType}"/>
                     <b:dataTableColumn label="Document Number" value="#{document.documentNumber}"/>

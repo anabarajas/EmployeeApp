@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core" xml:lang="en" lang="en"
+      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:f="http://xmlns.jcp.org/jsf/core" xml:lang="en" lang="en"
       xmlns:composite="http://java.sun.com/jsf/composite"
       xmlns:b="http://bootsfaces.net/ui">
 
@@ -52,6 +52,17 @@
                                   mask="true"/>
             </b:panel>
             <b:panel>
+                <div class="control-group">
+                    <h:outputLabel id="employeeDepartmentDropdown" styleClass="control-label" value="Department}:" for="department"/>
+                    <div class="controls">
+                        <h:selectOneMenu id="department" value="#{cc.attrs.employeeDepartment}" styleClass="input-large" rendered="#{cc.attrs.isUpdatingEmployee}">
+                            <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
+                            <f:selectItems value="#{employeeListController.allDeparments}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+
+                <!--
                 <div class="form-group">
                 <label for="employeeDepartmentDropDown">Department</label>
                 <b:dropButton value="Department" id="employeeDepartmentDropDown">
@@ -71,6 +82,7 @@
                         </c:forEach>
                     </ul>
                 </div>
+                -->
 
             </b:panel>
         </b:panelGrid>

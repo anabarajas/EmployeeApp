@@ -5,16 +5,9 @@
  */
 
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
-import com.mycompany.entity.Document;
-import com.mycompany.entity.EDepartment;
-import com.mycompany.entity.EEmployeePosition;
 import com.mycompany.entity.Employee;
 
-import javax.annotation.ManagedBean;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,19 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *
  * @author AnaCris
  */
-@Named(value="employeeController")
+@Named(value="showEmployeeController")
 @SessionScoped
-public class EmployeeController implements Serializable{
+public class ShowEmployeeController implements Serializable{
 
-    private static final Logger LOG = Logger.getLogger(EmployeeController.class.getName());
+    private static final Logger LOG = Logger.getLogger(ShowEmployeeController.class.getName());
 
     @Inject
     IEmployeeManagerBeanLocal employeeManagerBean;
@@ -64,7 +55,7 @@ public class EmployeeController implements Serializable{
 //        }
 //    }
 
-    public EmployeeController() {
+    public ShowEmployeeController() {
         updated = false;
     }
 

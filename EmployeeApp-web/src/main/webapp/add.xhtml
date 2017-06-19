@@ -11,13 +11,15 @@
         <ui:define name="title">Add Employee</ui:define>
         <ui:define name="pageTitle">Add New Employee</ui:define>
         <ui:define name="content">
+            <!-- TODO: later change employeeStatus: #{{addEmployeeController.country eq 'CANADA' ? 'ACTIVE' : 'PENDING'} -->
             <comps:employeeForm isUpdatingEmployee="false"
-                                employeeIsInternational="true"
+                                employeeStatus="ACTIVE"
                                 employeeFirstNameField="#{addEmployeeController.firstName}"
                                 employeeLastNameField="#{addEmployeeController.lastName}"
                                 employeeDepartment="#{addEmployeeController.department}"
                                 employeePosition="#{addEmployeeController.position}"
                                 employeeCountryOfBirth="#{addEmployeeController.country}"
+                                employeeIsInternational="#{addEmployeeController.country eq 'United States' ? 'true' : 'false'}"
                                 employeeDateOfBirth="#{addEmployeeController.dateOfBirth}"
                                 employeeStartDate="#{addEmployeeController.startDate}"
             />

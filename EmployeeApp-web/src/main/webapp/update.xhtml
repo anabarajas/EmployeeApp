@@ -12,28 +12,29 @@
         <ui:define name="pageTitle">Update Employee</ui:define>
         <ui:define name="content">
             <comps:employeeForm isUpdatingEmployee="true"
-                                employeeIsInternational="true"
-                                employeeFirstNameField="#{employeeController.employee.firstName}"
-                                employeeLastNameField="#{employeeController.employee.lastName}"
-                                employeeDepartment="#{employeeController.employee.department}"
-                                employeePosition="#{employeeController.employee.position}"
-                                employeeCountryOfBirth="#{employeeController.employee.country}"
-                                employeeDateOfBirth="#{employeeController.employee.dateOfBirth}"
-                                employeeStartDate="#{employeeController.employee.startDate}"
+                                employeeIsInternational="#{showEmployeeController.employee.country eq 'United States' ? 'true' : 'false'}"
+                                employeeFirstNameField="#{showEmployeeController.employee.firstName}"
+                                employeeLastNameField="#{showEmployeeController.employee.lastName}"
+                                employeeDepartment="#{showEmployeeController.employee.department}"
+                                employeePosition="#{showEmployeeController.employee.position}"
+                                employeeCountryOfBirth="#{showEmployeeController.employee.country}"
+                                employeeDateOfBirth="#{showEmployeeController.employee.dateOfBirth}"
+                                employeeStartDate="#{showEmployeeController.employee.startDate}"
+                                employeeStatus="#{showEmployeeController.employee.status}"
             />
             <div class="form-actions">
                 <h:form>
                     <h:commandButton id="backToList"
                                      value="Back to List"
-                                     action="#{employeeController.returnToList}"
+                                     action="#{showEmployeeController.returnToList}"
                                      styleClass="btn form-button"/>
                     <h:commandButton id="saveUpdatedEmployee"
                                      value="Save"
-                                     action="#{employeeController.updateEmployee}"
+                                     action="#{showEmployeeController.updateEmployee}"
                                      styleClass="btn btn-primary"/>
                     <h:commandButton id="deleteEmployee"
                                      value="Delete Employee"
-                                     action="#{employeeController.delete}"
+                                     action="#{showEmployeeController.delete}"
                                      styleClass="btn btn-danger"/>
                 </h:form>
             </div>
