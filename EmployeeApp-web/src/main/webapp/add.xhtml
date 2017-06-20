@@ -11,9 +11,8 @@
         <ui:define name="title">Add Employee</ui:define>
         <ui:define name="pageTitle">Add New Employee</ui:define>
         <ui:define name="content">
-            <!-- TODO: later change employeeStatus: #{{addEmployeeController.country eq 'CANADA' ? 'ACTIVE' : 'PENDING'} -->
+            <!-- TODO: later change employeeStatus:  -->
             <comps:employeeForm isUpdatingEmployee="false"
-                                employeeStatus="ACTIVE"
                                 employeeFirstNameField="#{addEmployeeController.firstName}"
                                 employeeLastNameField="#{addEmployeeController.lastName}"
                                 employeeDepartment="#{addEmployeeController.department}"
@@ -31,7 +30,7 @@
                                          action="list"
                                          styleClass="btn form-button"/>
                         <h:commandButton id="addEmployee"
-                                         action="#{addEmployeeController.addNewEmployee}"
+                                         action="#{addEmployeeController.addNewEmployee} -->no se puede aqui"
                                          styleClass="btn btn-primary"
                                          value="Create" />
                     </h:form>

@@ -2,8 +2,10 @@ import com.mycompany.eao.EmployeeManagerBean;
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
 import com.mycompany.entity.EDepartment;
 import com.mycompany.entity.EEmployeePosition;
+import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.SessionScoped;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
@@ -28,11 +30,27 @@ public class AddEmployeeController {
     private EDepartment department;
     private EEmployeePosition position;
     private Date startDate;
+    private EEmployeeStatus status;
+    private Boolean isInitalized = false;
+
+    @PostConstruct
+    public void init() {
+        isInitalized = true;
+    }
 
     public String addNewEmployee() {
-        employee = new Employee(firstName, lastName, dateOfBirth, country, position, department);
+        determineNewEmployeeStatus();
+        employee = new Employee(firstName, lastName, dateOfBirth, country, status, position, department, startDate);
         employeeManagerBean.create(employee);
         return "show";
+    }
+
+    private void determineNewEmployeeStatus() {
+        if (country.equals("United States")){
+            status = EEmployeeStatus.ACTIVE;
+        } else {
+            status = EEmployeeStatus.PENDING;
+        }
     }
 
     public String getFirstName() {
