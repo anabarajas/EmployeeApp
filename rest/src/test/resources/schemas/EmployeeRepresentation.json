@@ -1,0 +1,27 @@
+{
+  "description" : "An employee",
+  "type" : "object",
+  "properties" : {
+    "firstName" : {
+      "type" : "string"
+    },
+    "lastName" : {
+      "type" : "string"
+    },
+    "dateOfBirth" : {
+      "type" : "string"
+    },
+    "country" : {
+      "type" : "string"
+    },
+    "department" : {
+      "type" : "string"
+    },
+    "position" : {
+      "type" : "string"
+    },
+    "startDate" : {
+      "type" : "string"
+    }
+  }
+}

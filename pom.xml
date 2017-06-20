@@ -10,5 +10,6 @@
     <module>EmployeeApp-ear</module>
     <module>EmployeeApp-web</module>
     <module>EmployeeApp-ejb</module>
+    <module>rest</module>
   </modules>
 </project>
