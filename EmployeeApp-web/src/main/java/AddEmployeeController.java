@@ -4,7 +4,6 @@ import com.mycompany.entity.EEmployeePosition;
 import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,6 +21,7 @@ public class AddEmployeeController implements Serializable{
     IEmployeeManagerBeanLocal employeeManagerBean;
 
     private Employee employee;
+    private Long id;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
@@ -38,20 +38,9 @@ public class AddEmployeeController implements Serializable{
 //    }
 
     public String addNewEmployee() {
-        status = determineNewEmployeeStatus();
-        employee = new Employee(firstName, lastName, dateOfBirth, country, status, position, department, startDate);
-        employeeManagerBean.create(employee);
+        employee = employeeManagerBean.create(firstName, lastName, dateOfBirth, country, position, department, startDate);
+        id = employee.getId();
         return "show";
-    }
-
-    private EEmployeeStatus determineNewEmployeeStatus() {
-        EEmployeeStatus employeeStatus;
-        if (country.equals("United States")){
-            employeeStatus = EEmployeeStatus.ACTIVE;
-        } else {
-            employeeStatus = EEmployeeStatus.PENDING;
-        }
-        return employeeStatus;
     }
 
     public String getFirstName() {
@@ -108,5 +97,13 @@ public class AddEmployeeController implements Serializable{
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

@@ -5,18 +5,19 @@
  */
 package com.mycompany.eao;
 
+import com.mycompany.entity.EDepartment;
+import com.mycompany.entity.EEmployeePosition;
+import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import java.util.logging.Level;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
 
 /**
  *
@@ -24,7 +25,7 @@ import javax.inject.Named;
  */
 @Stateless
 public class EmployeeManagerBean extends AbstractFacade<Employee> implements Serializable, IEmployeeManagerBeanLocal {
-    
+
     private static final Logger LOG = Logger.getLogger(Employee.class.getName());
 
     @PersistenceContext(unitName = "EmployeeAppPU")
@@ -35,10 +36,36 @@ public class EmployeeManagerBean extends AbstractFacade<Employee> implements Ser
         return em;
     }
 
+
+
     public EmployeeManagerBean() {
         super(Employee.class);
     }
-    
+
+    @Override
+    public Employee create(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate) {
+        Employee e = new Employee();
+        e.setFirstName(firstName);
+        e.setLastName(lastName);
+        e.setDateOfBirth(dateOfBirth);
+        e.setCountry(country);
+        e.setPosition(position);
+        e.setDepartment(department);
+        e.setStartDate(startDate);
+        e.setStatus(determineNewEmployeeStatus(country));
+        return e;
+    }
+
+    private EEmployeeStatus determineNewEmployeeStatus(String country) {
+        EEmployeeStatus employeeStatus;
+        if (country.equals("United States")){
+            employeeStatus = EEmployeeStatus.ACTIVE;
+        } else {
+            employeeStatus = EEmployeeStatus.PENDING;
+        }
+        return employeeStatus;
+    }
+
     @Override
     public List<Employee> findAllEmployees() {
         Query q = em.createNamedQuery("Employee.findAll");

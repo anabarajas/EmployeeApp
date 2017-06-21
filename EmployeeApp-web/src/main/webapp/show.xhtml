@@ -9,7 +9,7 @@ and open the template in the editor.
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:util="http://java.sun.com/jsf/composite/"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:b="http://bootsfaces.net/ui">
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
 <ui:composition template="template.xhtml">
     <ui:define name="title">Employee</ui:define>
@@ -50,8 +50,10 @@ and open the template in the editor.
                                  styleClass="btn form-button"/>
                 <h:commandButton id="updateEmployee"
                                  value="Update"
-                                 action="update"
-                                 styleClass="btn btn-primary"/>
+                                 action="#{updateEmployeeController.updateEmployee}"
+                                 styleClass="btn btn-primary">
+                    <f:param name="updateEmployeeId" value="#{showEmployeeController.id}"/>
+                </h:commandButton>
             </h:form>
         </div>
         <hr/>

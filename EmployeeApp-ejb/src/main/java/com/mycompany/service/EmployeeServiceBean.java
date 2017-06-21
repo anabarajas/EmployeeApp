@@ -5,14 +5,32 @@
  */
 package com.mycompany.service;
 
+import com.mycompany.eao.IEmployeeManagerBeanLocal;
+import com.mycompany.entity.EDepartment;
+import com.mycompany.entity.EEmployeePosition;
+import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
-import java.util.logging.Logger;
+
+import javax.ejb.EJB;
+import java.util.Date;
 
 /**
  *
  * @author AnaCris
  */
 public class EmployeeServiceBean {
-    
-    private static final Logger LOG = Logger.getLogger(Employee.class.getName());
+
+    @EJB
+    IEmployeeManagerBeanLocal employeeManagerBean;
+
+    public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, EEmployeeStatus status) {
+        employee.setFirstName(firstName);
+        employee.setLastName(lastName);
+        employee.setCountry(country);
+        employee.setDateOfBirth(dateOfBirth);
+        employee.setDepartment(department);
+        employee.setPosition(position);
+        employee.setStatus(status);
+        employeeManagerBean.edit(employee);
+    }
 }
