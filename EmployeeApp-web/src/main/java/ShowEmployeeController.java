@@ -33,7 +33,7 @@ public class ShowEmployeeController implements Serializable{
 
     private Employee employee;
     private boolean updated;
-//    private String firstName;
+    private String firstName;
 //    private String lastName;
 //    private Date dateOfBirth;
 //    private String country;
@@ -104,11 +104,15 @@ public class ShowEmployeeController implements Serializable{
         return employee;
     }
 
-//    public String getFirstName() {
-//        return firstName;
-//    }
-//
-//    public String getLastName() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    //    public String getLastName() {
 //        return lastName;
 //    }
 //

@@ -5,14 +5,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:comps="http://java.sun.com/jsf/composite/comps"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
 <h:body>
     <ui:composition template="template.xhtml">
         <ui:define name="title">Update Employee</ui:define>
         <ui:define name="pageTitle">Update Employee</ui:define>
         <ui:define name="content">
             <comps:employeeForm isUpdatingEmployee="true"
-                                employeeIsInternational="#{showEmployeeController.employee.country eq 'United States' ? 'true' : 'false'}"
+                                employeeIsInternational="true"
                                 employeeFirstNameField="#{showEmployeeController.employee.firstName}"
                                 employeeLastNameField="#{showEmployeeController.employee.lastName}"
                                 employeeDepartment="#{showEmployeeController.employee.department}"
@@ -23,20 +23,23 @@
                                 employeeStatus="#{showEmployeeController.employee.status}"
             />
             <div class="form-actions">
-                <h:form>
+
                     <h:commandButton id="backToList"
                                      value="Back to List"
                                      action="#{showEmployeeController.returnToList}"
                                      styleClass="btn form-button"/>
-                    <h:commandButton id="saveUpdatedEmployee"
+                <h:form>
+                    <p:commandButton id="saveUpdatedEmployee"
                                      value="Save"
-                                     action="#{showEmployeeController.updateEmployee}"
-                                     styleClass="btn btn-primary"/>
+                                     action="#{showEmployeeController.updatehEmployee}"
+                                     styleClass="btn btn-primary"
+                    update=""/>
+                </h:form>
                     <h:commandButton id="deleteEmployee"
                                      value="Delete Employee"
                                      action="#{showEmployeeController.delete}"
                                      styleClass="btn btn-danger"/>
-                </h:form>
+
             </div>
 
 

@@ -1,4 +1,3 @@
-import com.mycompany.eao.EmployeeManagerBean;
 import com.mycompany.eao.IEmployeeManagerBeanLocal;
 import com.mycompany.entity.EDepartment;
 import com.mycompany.entity.EEmployeePosition;
@@ -6,10 +5,10 @@ import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +16,7 @@ import java.util.Date;
  */
 @Named(value = "addEmployeeController")
 @SessionScoped
-public class AddEmployeeController {
+public class AddEmployeeController implements Serializable{
 
     @Inject
     IEmployeeManagerBeanLocal employeeManagerBean;
@@ -31,26 +30,28 @@ public class AddEmployeeController {
     private EEmployeePosition position;
     private Date startDate;
     private EEmployeeStatus status;
-    private Boolean isInitalized = false;
+   // private Boolean isInitalized = false;
 
-    @PostConstruct
-    public void init() {
-        isInitalized = true;
-    }
+//    @PostConstruct
+//    public void init() {
+//        isInitalized = true;
+//    }
 
     public String addNewEmployee() {
-        determineNewEmployeeStatus();
+        status = determineNewEmployeeStatus();
         employee = new Employee(firstName, lastName, dateOfBirth, country, status, position, department, startDate);
         employeeManagerBean.create(employee);
         return "show";
     }
 
-    private void determineNewEmployeeStatus() {
+    private EEmployeeStatus determineNewEmployeeStatus() {
+        EEmployeeStatus employeeStatus;
         if (country.equals("United States")){
-            status = EEmployeeStatus.ACTIVE;
+            employeeStatus = EEmployeeStatus.ACTIVE;
         } else {
-            status = EEmployeeStatus.PENDING;
+            employeeStatus = EEmployeeStatus.PENDING;
         }
+        return employeeStatus;
     }
 
     public String getFirstName() {

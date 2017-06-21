@@ -14,7 +14,7 @@
     <composite:attribute name="employeeLastNameField" type="java.lang.String" required="true"/>
     <composite:attribute name="employeeDateOfBirth" type="java.util.Date" required="true"/>
     <composite:attribute name="employeeCountryOfBirth" type="java.lang.String" required="true"/>
-    <composite:attribute name="employeeStartDate" type="java.util.Date" required="false"/>
+    <composite:attribute name="employeeStartDate" type="java.util.Date" required="true"/>
     <composite:attribute name="employeeStatus" type="java.lang.String" required="false"/>
     <composite:attribute name="employeeDepartment" type="java.lang.String" required="true"/>
     <composite:attribute name="employeePosition" type="java.lang.String" required="true"/>
@@ -65,7 +65,7 @@
                             <f:selectItems value="#{employeeListController.positions}"/>
                         </h:selectOneMenu>
                     </div>
-                <h:panelGroup rendered="#{cc.attrs.isUpdatingEmployee}">
+                <h:panelGroup>
                     <h:outputLabel id="employeeStatusDropdown" styleClass="control-label" value="Status:" for="status"/>
                     <div class="controls">
                         <h:selectOneMenu id="status" value="#{cc.attrs.employeeStatus}">
@@ -77,7 +77,6 @@
             </b:panel>
         </b:panelGrid>
     </h:form>
-
 </composite:implementation>
 
 </html>

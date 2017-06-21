@@ -11,29 +11,26 @@
         <ui:define name="title">Add Employee</ui:define>
         <ui:define name="pageTitle">Add New Employee</ui:define>
         <ui:define name="content">
-            <!-- TODO: later change employeeStatus:  -->
             <comps:employeeForm isUpdatingEmployee="false"
                                 employeeFirstNameField="#{addEmployeeController.firstName}"
                                 employeeLastNameField="#{addEmployeeController.lastName}"
                                 employeeDepartment="#{addEmployeeController.department}"
                                 employeePosition="#{addEmployeeController.position}"
                                 employeeCountryOfBirth="#{addEmployeeController.country}"
-                                employeeIsInternational="#{addEmployeeController.country eq 'United States' ? 'true' : 'false'}"
+                                employeeIsInternational="true"
                                 employeeDateOfBirth="#{addEmployeeController.dateOfBirth}"
                                 employeeStartDate="#{addEmployeeController.startDate}"
             />
             <div class="row">
                 <div class="form-actions">
-                    <h:form>
-                        <h:commandButton id="backToList"
+                    <h:commandButton id="backToList"
                                          value="Back to List"
                                          action="list"
                                          styleClass="btn form-button"/>
                         <h:commandButton id="addEmployee"
-                                         action="#{addEmployeeController.addNewEmployee} -->no se puede aqui"
+                                         action="#{addEmployeeController.addNewEmployee}"
                                          styleClass="btn btn-primary"
                                          value="Create" />
-                    </h:form>
                 </div>
             </div>
         </ui:define>
