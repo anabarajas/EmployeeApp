@@ -15,6 +15,10 @@ and open the template in the editor.
     <ui:define name="title">Employee</ui:define>
     <ui:define name="pageTitle">Employee Profile</ui:define>
     <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="employeeId" value="#{showEmployeeController.id}"/>
+            <f:viewAction action="#{showEmployeeController.fetchEmployee}"/>
+        </f:metadata>
         <div class="row">
             <div class="col-md-6">
                 <dl class="dl-horizontal">
@@ -50,7 +54,7 @@ and open the template in the editor.
                                  styleClass="btn form-button"/>
                 <h:commandButton id="updateEmployee"
                                  value="Update"
-                                 action="#{updateEmployeeController.updateEmployee}"
+                                 action="update"
                                  styleClass="btn btn-primary">
                     <f:param name="updateEmployeeId" value="#{showEmployeeController.id}"/>
                 </h:commandButton>

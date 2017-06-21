@@ -49,7 +49,7 @@ public class ShowEmployeeController implements Serializable{
     @PostConstruct
     public void init() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        Long id = Long.valueOf(req.getParameter("id"));
+        id = Long.valueOf(req.getParameter("id"));
         try {
             if (id != null) {
                 employee = employeeManagerBean.findById(id);

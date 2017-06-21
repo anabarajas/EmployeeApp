@@ -46,7 +46,7 @@ public class UpdateEmployeeController implements Serializable {
     @PostConstruct
     public void init() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        Long id = Long.valueOf(req.getParameter("updateEmployeeId"));
+        id = Long.valueOf(req.getParameter("updateEmployeeId"));
         try {
             if (id != null) {
                 employee = employeeManagerBean.findById(id);
@@ -58,7 +58,14 @@ public class UpdateEmployeeController implements Serializable {
     }
 
     public UpdateEmployeeController() {
-
+        firstName = employee.getFirstName();
+        lastName = employee.getLastName();
+        dateOfBirth = employee.getDateOfBirth();
+        startDate = employee.getStartDate();
+        country = employee.getCountry();
+        department = employee.getDepartment();
+        position = employee.getPosition();
+        status = employee.getStatus();
     }
 
     public void cleanUp() {
