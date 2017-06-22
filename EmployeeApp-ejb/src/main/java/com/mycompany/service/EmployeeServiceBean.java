@@ -12,18 +12,23 @@ import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
 
 import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import java.util.Date;
 
 /**
  *
  * @author AnaCris
  */
-public class EmployeeServiceBean {
+
+@Stateless
+public class EmployeeServiceBean implements IEmployeeServiceBeanLocal {
 
     @EJB
     IEmployeeManagerBeanLocal employeeManagerBean;
 
-    public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, EEmployeeStatus status) {
+    public void updateEmployee(Employee employee , String firstName, String lastName,
+                               String country, Date dateOfBirth, EDepartment department,
+                               EEmployeePosition position, EEmployeeStatus status) {
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setCountry(country);

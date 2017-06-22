@@ -22,7 +22,7 @@ public interface IEmployeeManagerBeanLocal {
     
     void create(Employee employee);
 
-    public Employee create(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate);
+    public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate);
 
     void edit(Employee employee);
 

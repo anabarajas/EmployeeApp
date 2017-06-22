@@ -3,7 +3,7 @@ import com.mycompany.entity.EDepartment;
 import com.mycompany.entity.EEmployeePosition;
 import com.mycompany.entity.EEmployeeStatus;
 import com.mycompany.entity.Employee;
-import com.mycompany.service.EmployeeServiceBean;
+import com.mycompany.service.IEmployeeServiceBeanLocal;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -30,7 +30,7 @@ public class UpdateEmployeeController implements Serializable {
     IEmployeeManagerBeanLocal employeeManagerBean;
 
     @Inject
-    EmployeeServiceBean employeeServiceBean;
+    IEmployeeServiceBeanLocal employeeServiceBean;
 
     private Long id;
     private Employee employee;

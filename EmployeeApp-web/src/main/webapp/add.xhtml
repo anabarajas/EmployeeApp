@@ -11,32 +11,33 @@
         <ui:define name="title">Add Employee</ui:define>
         <ui:define name="pageTitle">Add New Employee</ui:define>
         <ui:define name="content">
-            <comps:employeeForm isUpdatingEmployee="false"
-                                employeeFirstNameField="#{addEmployeeController.firstName}"
-                                employeeLastNameField="#{addEmployeeController.lastName}"
-                                employeeDepartment="#{addEmployeeController.department}"
-                                employeePosition="#{addEmployeeController.position}"
-                                employeeCountryOfBirth="#{addEmployeeController.country}"
-                                employeeIsInternational="true"
-                                employeeDateOfBirth="#{addEmployeeController.dateOfBirth}"
-                                employeeStartDate="#{addEmployeeController.startDate}"
-            />
-            <div class="row">
-                <div class="form-actions">
-                    <h:commandButton id="backToList"
+            <h:form>
+                <comps:employeeForm isUpdatingEmployee="false"
+                                    employeeFirstNameField="#{addEmployeeController.firstName}"
+                                    employeeLastNameField="#{addEmployeeController.lastName}"
+                                    employeeDepartment="#{addEmployeeController.department}"
+                                    employeePosition="#{addEmployeeController.position}"
+                                    employeeCountryOfBirth="#{addEmployeeController.country}"
+                                    employeeIsInternational="true"
+                                    employeeDateOfBirth="#{addEmployeeController.dateOfBirth}"
+                                    employeeStartDate="#{addEmployeeController.startDate}"
+                />
+                <div class="row">
+                    <div class="form-actions">
+                        <h:commandButton id="backToList"
                                          value="Back to List"
                                          action="list"
                                          styleClass="btn form-button"/>
-                    <h:form>
+
                         <h:commandButton id="addEmployee"
                                          action="#{addEmployeeController.addNewEmployee}"
                                          styleClass="btn btn-primary"
                                          value="Create">
                             <f:param name="addEmployeeId" value="#{addEmployeeController.id}"/>
                         </h:commandButton>
-                    </h:form>
+                    </div>
                 </div>
-            </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </h:body>
