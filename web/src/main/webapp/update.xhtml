@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comps="http://java.sun.com/jsf/composite/comps"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:body>
+    <ui:composition template="template.xhtml">
+        <ui:define name="title">Update Employee</ui:define>
+        <ui:define name="pageTitle">Update Employee</ui:define>
+        <ui:define name="content">
+            <h:form>
+            <comps:employeeForm isUpdatingEmployee="true"
+                                employeeIsInternational="true"
+                                employeeFirstNameField="#{updateEmployeeController.firstName}"
+                                employeeLastNameField="#{updateEmployeeController.lastName}"
+                                employeeDepartment="#{updateEmployeeController.department}"
+                                employeePosition="#{updateEmployeeController.position}"
+                                employeeCountryOfBirth="#{updateEmployeeController.country}"
+                                employeeDateOfBirth="#{updateEmployeeController.dateOfBirth}"
+                                employeeStartDate="#{updateEmployeeController.startDate}"
+                                employeeStatus="#{updateEmployeeController.status}"
+            />
+            <div class="row">
+                    <h:commandButton id="backToList"
+                                     value="Back to List"
+                                     action="#{updateEmployeeController.returnToList}"
+                                     styleClass="btn form-button"/>
+                    <h:commandButton id="saveUpdatedEmployee"
+                                     value="Save"
+                                     action="#{updateEmployeeController.updateEmployee}"
+                                     styleClass="btn btn-primary"/>
+                    <h:commandButton id="deleteEmployee"
+                                     value="Delete Employee"
+                                     action="#{updateEmployeeController.delete}"
+                                     styleClass="btn btn-danger"/>
+
+            </div>
+        </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>
