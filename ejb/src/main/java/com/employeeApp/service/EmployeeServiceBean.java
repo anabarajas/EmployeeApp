@@ -5,6 +5,7 @@
  */
 package com.employeeApp.service;
 
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.Employee;
 import com.employeeApp.eao.IEmployeeManagerBeanLocal;
 import com.employeeApp.entity.EDepartment;
@@ -24,7 +25,7 @@ import java.util.Date;
 public class EmployeeServiceBean implements IEmployeeServiceBeanLocal {
 
     @EJB
-    IEmployeeManagerBeanLocal employeeManagerBean;
+    EmployeeManagerBean employeeManagerBean;
 
     public void updateEmployee(Employee employee , String firstName, String lastName,
                                String country, Date dateOfBirth, EDepartment department,

@@ -53,7 +53,7 @@ public class EmployeeManagerBean extends AbstractFacade<Employee> implements Ser
         e.setDepartment(department);
         e.setStartDate(startDate);
         e.setStatus(determineNewEmployeeStatus(country));
-        super.create(e);
+        em.merge(e);
         return e;
     }
 
