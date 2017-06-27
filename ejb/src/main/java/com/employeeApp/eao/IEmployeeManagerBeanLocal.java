@@ -7,6 +7,7 @@ package com.employeeApp.eao;
 
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
+import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
 
 import javax.ejb.Local;
@@ -19,10 +20,12 @@ import java.util.List;
  */
 @Local
 public interface IEmployeeManagerBeanLocal {
-    
-    void create(Employee employee);
 
     public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate);
+
+    public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status);
+    
+    void create(Employee employee);
 
     void edit(Employee employee);
 

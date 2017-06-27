@@ -17,6 +17,7 @@ import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -36,24 +37,58 @@ public class EmployeeManagerBean extends AbstractFacade<Employee> implements Ser
         return em;
     }
 
-
-
     public EmployeeManagerBean() {
         super(Employee.class);
     }
 
+    @Override
+    public void remove(Employee e) {
+        try {
+            em.find(Employee.class, e);
+            em.remove(e);
+            LOG.log(Level.INFO, "Removed employee {0} {1}, with id: {}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
+        } catch (Exception ex) {
+            LOG.log(Level.WARNING, "EmployeeManagerBean::remove - Error while removing employee");
+        }
+
+    }
+
+    public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status) {
+        try {
+            em.find(Employee.class, employee);
+            employee.setFirstName(firstName);
+            employee.setLastName(lastName);
+            employee.setDateOfBirth(dateOfBirth);
+            employee.setCountry(country);
+            employee.setPosition(position);
+            employee.setDepartment(department);
+            employee.setStartDate(startDate);
+            employee.setStatus(determineNewEmployeeStatus(country));
+            em.merge(employee);
+        } catch (Exception ex) {
+            LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee");
+        }
+        LOG.log(Level.INFO, "Updated employee {0} {1}, with id: {}", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
+    }
+
 
     public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate) {
-        Employee e = new Employee();
-        e.setFirstName(firstName);
-        e.setLastName(lastName);
-        e.setDateOfBirth(dateOfBirth);
-        e.setCountry(country);
-        e.setPosition(position);
-        e.setDepartment(department);
-        e.setStartDate(startDate);
-        e.setStatus(determineNewEmployeeStatus(country));
-        em.merge(e);
+            Employee e = new Employee();
+            e.setFirstName(firstName);
+            e.setLastName(lastName);
+            e.setDateOfBirth(dateOfBirth);
+            e.setCountry(country);
+            e.setPosition(position);
+            e.setDepartment(department);
+            e.setStartDate(startDate);
+            e.setStatus(determineNewEmployeeStatus(country));
+        try {
+            //super.persist(e);
+            em.persist(e);
+            LOG.log(Level.INFO, "Created employee {0} {1}, with id: {}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
+        } catch (Exception ex) {
+            LOG.log(Level.WARNING, "EmployeeManagerBean::createEmployee - Error while creating Employee");
+        }
         return e;
     }
 

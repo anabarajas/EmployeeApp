@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
+<h:body>
+    <ui:composition template="template.xhtml">
+        <ui:define name="pageTitle">Delete Employee</ui:define>
+        <ui:define name="content">
+            <div class="alert alert-success">
+                <strong>Success!</strong>
+                Employee #{updateEmployeeController.employee.firstName} #{updateEmployeeController.employee.lastName} was deleted.
+            </div>
+            <h:form>
+            <h:commandButton id="backToList"
+                             value="Back to List"
+                             action="#{showEmployeeController.returnToList}"
+                             styleClass="btn form-button"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</h:body>
+</html>

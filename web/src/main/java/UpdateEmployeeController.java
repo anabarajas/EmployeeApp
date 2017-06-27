@@ -81,9 +81,30 @@ public class UpdateEmployeeController implements Serializable {
     }
 
     public String updateEmployee() {
-        employeeServiceBean.updateEmployee(employee ,firstName, lastName, country, dateOfBirth, department, position, status);
-        cleanUp();
+        employeeManagerBean.updateEmployee(employee ,firstName, lastName, country, dateOfBirth, department, position, startDate, status);
+        //cleanUp();
         return "show";
+    }
+
+    public String deleteEmployee(Employee e) {
+        employeeManagerBean.remove(e);
+        return "delete";
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

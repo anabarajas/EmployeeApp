@@ -16,7 +16,6 @@ and open the template in the editor.
     <ui:define name="pageTitle">Employee Profile</ui:define>
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="employeeId" value="#{showEmployeeController.id}"/>
             <f:viewAction action="#{showEmployeeController.fetchEmployee}"/>
         </f:metadata>
         <div class="row">
@@ -46,20 +45,18 @@ and open the template in the editor.
             </div>
         </div>
         <br />
-        <div class="form-actions">
-            <h:form>
-                <h:commandButton id="backToList"
-                                 value="Back to List"
-                                 action="#{showEmployeeController.returnToList}"
-                                 styleClass="btn form-button"/>
-                <h:commandButton id="updateEmployee"
-                                 value="Update"
-                                 action="update"
-                                 styleClass="btn btn-primary">
-                    <f:param name="updateEmployeeId" value="#{showEmployeeController.id}"/>
-                </h:commandButton>
-            </h:form>
-        </div>
+        <h:form>
+            <h:commandButton id="backToList"
+                             value="Back to List"
+                             action="#{showEmployeeController.returnToList}"
+                             styleClass="btn form-button"/>
+            <h:commandButton id="updateEmployee"
+                             value="Update"
+                             action="update"
+                             styleClass="btn btn-primary">
+                <f:param name="updateEmployeeId" value="#{showEmployeeController.id}"/>
+            </h:commandButton>
+        </h:form>
         <hr/>
         <div class="row">
             <h3>Available Documents</h3>

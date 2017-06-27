@@ -9,7 +9,6 @@ import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.Employee;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -46,10 +45,32 @@ public class ShowEmployeeController implements Serializable{
     private EEmployeePosition position;
     private Date startDate;
 
-    @PostConstruct
-    public void init() {
+//    @PostConstruct
+//    public void init() {
+//        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+//        id = Long.valueOf(req.getParameter("id"));
+//        try {
+//            if (id != null) {
+//                employee = employeeManagerBean.findById(id);
+//            }
+//        } catch (Exception e) {
+//            LOG.log(Level.WARNING, e.getMessage());
+//            JsfUtil.addErrorMessage("error fetching employee id" + id.toString());
+//        }
+//    }
+
+    public ShowEmployeeController() {
+        updated = false;
+    }
+
+    public void fetchEmployee() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        id = Long.valueOf(req.getParameter("id"));
+        id = Long.valueOf(req.getParameter("addEmployeeId"));
+        employee = employeeManagerBean.findById(id);
+    }
+
+    public void fetchEmployee(Long employeeId) {
+        id = employeeId;
         try {
             if (id != null) {
                 employee = employeeManagerBean.findById(id);
@@ -58,17 +79,6 @@ public class ShowEmployeeController implements Serializable{
             LOG.log(Level.WARNING, e.getMessage());
             JsfUtil.addErrorMessage("error fetching employee id" + id.toString());
         }
-    }
-
-    public ShowEmployeeController() {
-        updated = false;
-    }
-
-    public String fetchEmployee() {
-        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        id = Long.valueOf(req.getParameter("employeeId"));
-        employee = employeeManagerBean.findById(id);
-        return "show";
     }
 
     public String returnToList() {
@@ -84,10 +94,6 @@ public class ShowEmployeeController implements Serializable{
     public String formatDate(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         return dateFormat.format(date);
-    }
-
-    public void deleteEmployee(Employee employee) {
-        employeeManagerBean.remove(employee);
     }
 
 //    public void resetEmployeeFormFields() {
