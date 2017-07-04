@@ -9,6 +9,7 @@ import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.Employee;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -26,17 +27,18 @@ import java.util.logging.Logger;
  */
 @Named(value="showEmployeeController")
 @SessionScoped
-public class ShowEmployeeController implements Serializable{
+public class ShowEmployeeController implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(ShowEmployeeController.class.getName());
 
     @Inject
     IEmployeeManagerBeanLocal employeeManagerBean;
 
+    @Inject
+    AddEmployeeController addEmployeeController;
 
     private Employee employee;
     private Long id;
-    private boolean updated;
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
@@ -45,35 +47,60 @@ public class ShowEmployeeController implements Serializable{
     private EEmployeePosition position;
     private Date startDate;
 
-//    @PostConstruct
-//    public void init() {
-//        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-//        id = Long.valueOf(req.getParameter("id"));
-//        try {
-//            if (id != null) {
-//                employee = employeeManagerBean.findById(id);
+    @PostConstruct
+    public void init() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        try {
+            id = addEmployeeController.getId();
+//            req.getParameter("addEmployeeId");
+
+//            if (req.getParameter("addEmployeeId") != null) {
+//               // id = addEmployeeController.getId();
+//                id = Long.valueOf(req.getParameter("addEmployeeId"));
+//            } else {
+//                id = Long.valueOf(req.getParameter("id"));
 //            }
-//        } catch (Exception e) {
-//            LOG.log(Level.WARNING, e.getMessage());
-//            JsfUtil.addErrorMessage("error fetching employee id" + id.toString());
-//        }
-//    }
+        } catch(Exception e) {
+            LOG.log(Level.WARNING, "ShowEmployeeController:init() - no value for parameters");
+        }
+
+    }
 
     public ShowEmployeeController() {
-        updated = false;
     }
 
-    public void fetchEmployee() {
-        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        id = Long.valueOf(req.getParameter("addEmployeeId"));
-        employee = employeeManagerBean.findById(id);
+    public void pageFieldsCleanUp() {
+        employee = new Employee();
+        id = null;
     }
 
-    public void fetchEmployee(Long employeeId) {
-        id = employeeId;
+    public void cleanUp() {
+        employee = new Employee();
+    }
+
+    public String fetchEmployee(Long employeeId) {
         try {
-            if (id != null) {
-                employee = employeeManagerBean.findById(id);
+            if (id == null) {
+                id = employeeId;
+            }
+            employee = employeeManagerBean.findById(id);
+        } catch (Exception ex) {
+            LOG.log(Level.WARNING, ex.getMessage());
+            JsfUtil.addErrorMessage("error fetching employee id" + id.toString());
+        }
+        return "show";
+
+    }
+
+    public void onPageLoad() {
+        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        try {
+            if (req.getParameter("addEmployeeId") != null) {
+                id = Long.valueOf(req.getParameter("addEmployeeId"));
+            } else if (req.getParameter("updatedEmployeeId") != null ) {
+                id = Long.valueOf(req.getParameter("updatedEmployeeId"));
+            } else {
+                LOG.log(Level.INFO, "ShowEmployeeController :: onpageLoad() - page called from list controller");
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage());
@@ -82,13 +109,8 @@ public class ShowEmployeeController implements Serializable{
     }
 
     public String returnToList() {
-        cleanUp();
+        pageFieldsCleanUp();
         return "list";
-    }
-
-    public void cleanUp() {
-        employee = new Employee();
-        updated = false;
     }
 
     public String formatDate(Date date) {
@@ -96,7 +118,7 @@ public class ShowEmployeeController implements Serializable{
         return dateFormat.format(date);
     }
 
-//    public void resetEmployeeFormFields() {
+    //    public void resetEmployeeFormFields() {
 //        this.firstName = null;
 //        this.lastName = null;
 //        this.dateOfBirth = null;

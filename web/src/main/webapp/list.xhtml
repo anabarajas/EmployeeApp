@@ -25,6 +25,7 @@
                 <p:column headerText="Employee Id" id="employeeIdColumn">
                     <h:form>
                         <h:commandLink id ="linkToEmployee" action="#{showEmployeeController.fetchEmployee(employee.id)}">
+                            <f:param name="id" value="#{employee.id}"/>
                             <h:outputText value="#{employee.id}"/>
                         </h:commandLink>
                     </h:form>

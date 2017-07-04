@@ -38,12 +38,10 @@ public class Employee implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "firstName")
     private String firstName;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "lastName")
     private String lastName;
     @Basic(optional = false)
@@ -53,24 +51,20 @@ public class Employee implements Serializable {
     private Date dateOfBirth;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "country")
     private String country;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private EEmployeeStatus status;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "position")
     @Enumerated(EnumType.STRING)
     private EEmployeePosition position;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
     @Column(name = "department")
     @Enumerated(EnumType.STRING)
     private EDepartment department;

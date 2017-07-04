@@ -3,6 +3,7 @@ import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
+import com.employeeApp.service.EmployeeServiceBean;
 import com.employeeApp.service.IEmployeeServiceBeanLocal;
 
 import javax.annotation.PostConstruct;
@@ -50,6 +51,14 @@ public class UpdateEmployeeController implements Serializable {
         try {
             if (id != null) {
                 employee = employeeManagerBean.findById(id);
+                firstName = employee.getFirstName();
+                lastName = employee.getLastName();
+                dateOfBirth = employee.getDateOfBirth();
+                startDate = employee.getStartDate();
+                country = employee.getCountry();
+                department = employee.getDepartment();
+                position = employee.getPosition();
+                status = employee.getStatus();
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, e.getMessage());
@@ -57,16 +66,16 @@ public class UpdateEmployeeController implements Serializable {
         }
     }
 
-    public UpdateEmployeeController() {
-        firstName = employee.getFirstName();
-        lastName = employee.getLastName();
-        dateOfBirth = employee.getDateOfBirth();
-        startDate = employee.getStartDate();
-        country = employee.getCountry();
-        department = employee.getDepartment();
-        position = employee.getPosition();
-        status = employee.getStatus();
-    }
+//    public UpdateEmployeeController() {
+//        firstName = employee.getFirstName();
+//        lastName = employee.getLastName();
+//        dateOfBirth = employee.getDateOfBirth();
+//        startDate = employee.getStartDate();
+//        country = employee.getCountry();
+//        department = employee.getDepartment();
+//        position = employee.getPosition();
+//        status = employee.getStatus();
+//    }
 
     public void cleanUp() {
         this.employee = null;
@@ -86,9 +95,13 @@ public class UpdateEmployeeController implements Serializable {
         return "show";
     }
 
+    public String returnToList() {
+       // cleanUp();
+        return "list";
+    }
+
     public String deleteEmployee(Employee e) {
-        employeeManagerBean.remove(e);
-        return "delete";
+        return employeeServiceBean.removeEmployee(e);
     }
 
     public Employee getEmployee() {

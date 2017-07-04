@@ -25,15 +25,15 @@ public interface IEmployeeManagerBeanLocal {
 
     public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status);
     
-    void create(Employee employee);
-
-    void edit(Employee employee);
-
+//    void create(Employee employee);
+//
+//    void edit(Employee employee);
+//
     void remove(Employee employee);
-
-    List<Employee> findRange(int[] range);
-
-    int count();
+//
+//    List<Employee> findRange(int[] range);
+//
+//    int count();
     
     List<Employee> findAllEmployees();
     
@@ -54,16 +54,5 @@ public interface IEmployeeManagerBeanLocal {
     Employee findByDepartment(String department);
     
     Employee findByStartDate(Date startDate);
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
 }
