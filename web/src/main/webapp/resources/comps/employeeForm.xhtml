@@ -19,7 +19,6 @@
     <composite:attribute name="employeeDepartment" type="java.lang.String" required="true"/>
     <composite:attribute name="employeePosition" type="java.lang.String" required="true"/>
     <composite:attribute name="isUpdatingEmployee" type="java.lang.Boolean" required="true"/>
-    <composite:attribute name="employeeIsInternational" type="java.lang.Boolean" required="true"/>
     <composite:attribute name="employeeDocuments" type="java.lang.Object" required="false"/>
 </composite:interface>
 
@@ -46,7 +45,7 @@
                               label="Start Date:"
                               allow-input-toggle="true"
                               show-date="true"
-                              show-time="false"
+                              show-time="true"
                               mask="true"/>
         </b:panel>
         <b:panel>
@@ -57,14 +56,16 @@
                     <f:selectItems value="#{employeeListController.deparments}"/>
                 </h:selectOneMenu>
             </div>
-            <h:outputLabel id="employeePositionDropdown" styleClass="control-label" value="Position: " for="position"/>
-            <div class="controls">
-                <h:selectOneMenu id="position" value="#{cc.attrs.employeePosition}">
-                    <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
-                    <f:selectItems value="#{employeeListController.positions}"/>
-                </h:selectOneMenu>
-            </div>
             <h:panelGroup>
+                <h:outputLabel id="employeePositionDropdown" styleClass="control-label" value="Position: " for="position"/>
+                <div class="controls">
+                    <h:selectOneMenu id="position" value="#{cc.attrs.employeePosition}">
+                        <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
+                        <f:selectItems value="#{employeeListController.positions}"/>
+                    </h:selectOneMenu>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{cc.attrs.isUpdatingEmployee}">
                 <h:outputLabel id="employeeStatusDropdown" styleClass="control-label" value="Status:" for="status"/>
                 <div class="controls">
                     <h:selectOneMenu id="status" value="#{cc.attrs.employeeStatus}">

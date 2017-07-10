@@ -14,6 +14,8 @@ import com.employeeApp.entity.EEmployeeStatus;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.logging.Level;
@@ -25,33 +27,23 @@ import java.util.logging.Logger;
  */
 
 @Stateless
-public class EmployeeServiceBean implements Serializable, IEmployeeServiceBeanLocal {
+public class EmployeeServiceBean implements IEmployeeServiceBeanLocal {
 
     private static final Logger LOG = Logger.getLogger(EmployeeServiceBean.class.getName());
 
-    @EJB
-    EmployeeManagerBean employeeManagerBean;
+    @PersistenceContext(unitName = "EmployeeAppPU")
+    private EntityManager em;
 
-//    public void updateEmployee(Employee employee , String firstName, String lastName,
-//                               String country, Date dateOfBirth, EDepartment department,
-//                               EEmployeePosition position, EEmployeeStatus status) {
-//        employee.setFirstName(firstName);
-//        employee.setLastName(lastName);
-//        employee.setCountry(country);
-//        employee.setDateOfBirth(dateOfBirth);
-//        employee.setDepartment(department);
-//        employee.setPosition(position);
-//        employee.setStatus(status);
-//        employeeManagerBean.edit(employee);
-//    }
+    @EJB
+    private IEmployeeManagerBeanLocal employeeManagerBean;
 
     public String removeEmployee(Employee e) {
         try{
             employeeManagerBean.remove(e);
-            return "delete";
+            return "delete?faces-redirect=true";
         } catch (Exception ex) {
-            LOG.log(Level.WARNING, "EmployeeServiceBean::remove - Error while removing employee");
-            return "failure";
+            LOG.log(Level.WARNING, "EmployeeServiceBean::remove - Error while removing employee {0} {1} with id: {2}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
+            return "failure?faces-redirect=true";
         }
     }
 }

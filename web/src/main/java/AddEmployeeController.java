@@ -15,10 +15,10 @@ import java.util.Date;
  */
 @Named(value = "addEmployeeController")
 @SessionScoped
-public class AddEmployeeController implements Serializable{
+public class AddEmployeeController implements Serializable {
 
     @Inject
-    IEmployeeManagerBeanLocal employeeManagerBean;
+    private IEmployeeManagerBeanLocal employeeManagerBean;
 
     private Employee employee;
     private Long id;
@@ -29,11 +29,23 @@ public class AddEmployeeController implements Serializable{
     private EDepartment department;
     private EEmployeePosition position;
     private Date startDate;
-    private EEmployeeStatus status;
+
+    public void pageFieldsCleanUp() {
+        employee = null;
+        id = null;
+        firstName = null;
+        lastName = null;
+        dateOfBirth = null;
+        country = null;
+        department = null;
+        position = null;
+        startDate = null;
+    }
 
     public String addNewEmployee() {
         employee = employeeManagerBean.createEmployee(firstName, lastName, dateOfBirth, country, position, department, startDate);
         id = employee.getId();
+        pageFieldsCleanUp();
         return "show";
     }
 

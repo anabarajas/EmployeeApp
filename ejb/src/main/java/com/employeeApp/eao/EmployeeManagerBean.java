@@ -32,25 +32,15 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-
     protected EntityManager getEntityManager() {
         return em;
     }
 
-//    public EmployeeManagerBean() {
-//        super(Employee.class);
-//    }
-
-
     public void remove(Employee e) {
-        try {
-            em.find(Employee.class, e.getId());
-            em.remove(e);
-            LOG.log(Level.INFO, "Removed employee {0} {1}, with id: {2}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
-        } catch (Exception ex) {
-            LOG.log(Level.WARNING, "EmployeeManagerBean::remove - Error while removing employee");
-        }
-
+       //Employee employeeToRemove = em.find(Employee.class, e.getId());
+        Employee employeeToRemove = em.getReference(Employee.class, e.getId());
+        em.remove(employeeToRemove);
+        LOG.log(Level.INFO, "Removed employee {0} {1}, with id: {2}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
     }
 
     public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status) {
@@ -64,10 +54,10 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
             employee.setStartDate(startDate);
             employee.setStatus(determineNewEmployeeStatus(country));
             em.merge(employee);
+            LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
         } catch (Exception ex) {
             LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee");
         }
-        LOG.log(Level.INFO, "Updated employee {0} {1}, with id: {2}", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
     }
 
 
@@ -93,7 +83,7 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
 
     private EEmployeeStatus determineNewEmployeeStatus(String country) {
         EEmployeeStatus employeeStatus;
-        if (country.equals("United States")){
+        if (country.equals("United States") || country.equals("Canada")){
             employeeStatus = EEmployeeStatus.ACTIVE;
         } else {
             employeeStatus = EEmployeeStatus.PENDING;

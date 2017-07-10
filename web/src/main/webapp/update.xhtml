@@ -9,12 +9,16 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
     <ui:composition template="template.xhtml">
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:event listener="#{updateEmployeeController.onPageLoad}" type="preRenderView"/>
+            </f:metadata>
+        </ui:define>
         <ui:define name="title">Update Employee</ui:define>
         <ui:define name="pageTitle">Update Employee</ui:define>
         <ui:define name="content">
             <h:form>
             <comps:employeeForm isUpdatingEmployee="true"
-                                employeeIsInternational="true"
                                 employeeFirstNameField="#{updateEmployeeController.firstName}"
                                 employeeLastNameField="#{updateEmployeeController.lastName}"
                                 employeeDepartment="#{updateEmployeeController.department}"
@@ -35,7 +39,7 @@
                                      styleClass="btn btn-primary"/>
                     <h:commandButton id="deleteEmployee"
                                      value="Delete Employee"
-                                     action="#{updateEmployeeController.deleteEmployee(updateEmployeeController.employee)}"
+                                     action="#{updateEmployeeController.deleteEmployee}"
                                      styleClass="btn btn-danger"/>
 
             </div>

@@ -9,26 +9,29 @@
 
 <h:body>
     <ui:composition template="template.xhtml">
+        <ui:define name="metadata">
+            <f:event type="preRenderView" listener="#{employeeListController.onPageLoad}"/>
+        </ui:define>
         <ui:define name="title">EmployeeApp</ui:define>
         <ui:define name="pageTitle">Current Employees</ui:define>
         <ui:define name="content">
             <h:form>
                 <h:commandButton id="newEmployee"
                                  value="Create New Employee"
-                                 action="add"
+                                 action="add?faces-redirect=true"
                                  styleClass="btn form-button"/>
             </h:form>
             <br/>
             <p:dataTable id="employeesTable"
                          var="employee"
                          value="#{employeeListController.employees}">
-                <p:column headerText="Employee Id" id="employeeIdColumn">
-                    <h:form>
-                        <h:commandLink id ="linkToEmployee" action="#{showEmployeeController.fetchEmployee(employee.id)}">
+                <p:column headerText="Employee Id"
+                          sortBy="#{employee.id}"
+                          id="employeeIdColumn">
+                    <h:link id ="linkToEmployee" outcome="show">
                             <f:param name="id" value="#{employee.id}"/>
                             <h:outputText value="#{employee.id}"/>
-                        </h:commandLink>
-                    </h:form>
+                    </h:link>
                 </p:column>
                 <p:column headerText="Name"
                           sortBy="#{employee.lastName}"
@@ -38,7 +41,7 @@
                 <p:column headerText="Date of Birth"
                           sortBy="#{employee.dateOfBirth}"
                           id="employeeDateOfBirthColumn">
-                    <h:outputText value="#{employee.dateOfBirth}"/>
+                    <h:outputText value="#{utils.formatDateWithTime(employee.dateOfBirth)}"/>
                 </p:column>
                 <p:column headerText="Country"
                           sortBy="#{employee.country}"
@@ -53,7 +56,7 @@
                 <p:column headerText="Start Date"
                           sortBy="#{employee.startDate}"
                           id="employeeStartDateColumn">
-                    <h:outputText value="#{employee.startDate}"/>
+                    <h:outputText value="#{utils.formatDateWithTime(employee.startDate)}"/>
                 </p:column>
                 <p:column headerText="Department"
                           sortBy="#{employee.department}"
@@ -66,6 +69,7 @@
                     <h:outputText value="#{employee.position}"/>
                 </p:column>
             </p:dataTable>
+            <br/>
         </ui:define>
     </ui:composition>
 </h:body>

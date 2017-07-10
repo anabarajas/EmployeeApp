@@ -6,11 +6,10 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xml:lang="en" lang="en">
 <h:body>
     <ui:composition template="template.xhtml">
-        <ui:define name="pageTitle">Transaction Failure</ui:define>
+        <ui:define name="pageTitle"><strong>Oops! Something went wrong!</strong></ui:define>
         <ui:define name="content">
-            <div class="alert alert-warning">
-                <strong>Oops! Something went wrong</strong>
-                Employee #{updateEmployeeController.employee.firstName} #{updateEmployeeController.employee.lastName} was not deleted.
+            <div class="alert alert-danger">
+                Employee #{updateEmployeeController.employee.firstName} #{updateEmployeeController.employee.lastName} with id #{updateEmployeeController.employee.id} was not deleted.
             </div>
             <h:form>
                 <h:commandButton id="backToList"

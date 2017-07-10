@@ -24,17 +24,9 @@ public interface IEmployeeManagerBeanLocal {
     public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate);
 
     public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status);
-    
-//    void create(Employee employee);
-//
-//    void edit(Employee employee);
-//
-    void remove(Employee employee);
-//
-//    List<Employee> findRange(int[] range);
-//
-//    int count();
-    
+
+    public void remove(Employee employee);
+
     List<Employee> findAllEmployees();
     
     Employee findById(Long id);

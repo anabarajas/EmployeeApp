@@ -12,13 +12,15 @@ and open the template in the editor.
       xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <body>
 <ui:composition template="template.xhtml">
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:event listener="#{showEmployeeController.onPageLoad}" type="preRenderView"/>
+        </f:metadata>
+    </ui:define>
     <ui:define name="title">Employee</ui:define>
     <ui:define name="pageTitle">Employee Profile</ui:define>
     <ui:define name="content">
         <h:form>
-            <f:metadata>
-                <f:viewAction action="#{showEmployeeController.onPageLoad}"/>
-            </f:metadata>
             <div class="row">
                 <div class="col-md-6">
                     <dl class="dl-horizontal">
@@ -37,9 +39,9 @@ and open the template in the editor.
                         <dt><h:outputText value="Department: "/></dt>
                         <dd><h:outputText value="#{showEmployeeController.employee.department}"/></dd>
                         <dt><h:outputText value="Start Date: "/></dt>
-                        <dd><h:outputText value="#{showEmployeeController.employee.startDate}"/></dd>
+                        <dd><h:outputText value="#{utils.formatDateWithTime(showEmployeeController.employee.startDate)}"/></dd>
                         <dt><h:outputText value="Date of Birth: "/></dt>
-                        <dd><h:outputText value="#{showEmployeeController.employee.dateOfBirth}"/></dd>
+                        <dd><h:outputText value="#{utils.formatDate(showEmployeeController.employee.dateOfBirth)}"/></dd>
                         <dt><h:outputText value="Country: "/></dt>
                         <dd><h:outputText value="#{showEmployeeController.employee.country}"/></dd>
                     </dl>
@@ -51,12 +53,12 @@ and open the template in the editor.
                                  value="Back to List"
                                  action="#{showEmployeeController.returnToList}"
                                  styleClass="btn form-button"/>
-                <h:commandButton id="updateEmployee"
+                <h:button id="updateEmployee"
                                  value="Update"
-                                 action="update"
+                                 outcome="update"
                                  styleClass="btn btn-primary">
-                    <f:param name="updateEmployeeId" value="#{showEmployeeController.id}"/>
-                </h:commandButton>
+                    <f:param name="id" value="#{showEmployeeController.id}"/>
+                </h:button>
             </div>
             <hr/>
             <div class="row">

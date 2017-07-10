@@ -23,15 +23,15 @@ import java.util.logging.Logger;
 
 @Named(value="updateEmployeeController")
 @SessionScoped
-public class UpdateEmployeeController implements Serializable {
+public class UpdateEmployeeController extends AbstractEmployeeController implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(ShowEmployeeController.class.getName());
 
     @Inject
-    IEmployeeManagerBeanLocal employeeManagerBean;
+    private IEmployeeManagerBeanLocal employeeManagerBean;
 
     @Inject
-    IEmployeeServiceBeanLocal employeeServiceBean;
+    private IEmployeeServiceBeanLocal employeeServiceBean;
 
     private Long id;
     private Employee employee;
@@ -44,10 +44,9 @@ public class UpdateEmployeeController implements Serializable {
     private EEmployeePosition position;
     private EEmployeeStatus status;
 
-    @PostConstruct
-    public void init() {
+    public void onPageLoad() {
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        id = Long.valueOf(req.getParameter("updateEmployeeId"));
+        id = Long.valueOf(req.getParameter("id"));
         try {
             if (id != null) {
                 employee = employeeManagerBean.findById(id);
@@ -66,17 +65,6 @@ public class UpdateEmployeeController implements Serializable {
         }
     }
 
-//    public UpdateEmployeeController() {
-//        firstName = employee.getFirstName();
-//        lastName = employee.getLastName();
-//        dateOfBirth = employee.getDateOfBirth();
-//        startDate = employee.getStartDate();
-//        country = employee.getCountry();
-//        department = employee.getDepartment();
-//        position = employee.getPosition();
-//        status = employee.getStatus();
-//    }
-
     public void cleanUp() {
         this.employee = null;
         this.firstName = null;
@@ -91,17 +79,12 @@ public class UpdateEmployeeController implements Serializable {
 
     public String updateEmployee() {
         employeeManagerBean.updateEmployee(employee ,firstName, lastName, country, dateOfBirth, department, position, startDate, status);
-        //cleanUp();
-        return "show";
+        cleanUp();
+        return "show?faces-redirect=true?id=" + employee.getId();
     }
 
-    public String returnToList() {
-       // cleanUp();
-        return "list";
-    }
-
-    public String deleteEmployee(Employee e) {
-        return employeeServiceBean.removeEmployee(e);
+    public String deleteEmployee() {
+        return employeeServiceBean.removeEmployee(employee);
     }
 
     public Employee getEmployee() {
