@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -32,9 +33,9 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-    protected EntityManager getEntityManager() {
-        return em;
-    }
+//    protected EntityManager getEntityManager() {
+//        return em;
+//    }
 
     public void remove(Employee e) {
        //Employee employeeToRemove = em.find(Employee.class, e.getId());
@@ -91,6 +92,7 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
         return employeeStatus;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Employee> findAllEmployees() {
         Query q = em.createNamedQuery("Employee.findAll");

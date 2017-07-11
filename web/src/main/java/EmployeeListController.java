@@ -5,7 +5,6 @@ import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,15 +31,14 @@ import java.util.stream.Stream;
 public class EmployeeListController implements Serializable {
     
     @Inject
-    IEmployeeManagerBeanLocal employeeManagerBean;
+    private IEmployeeManagerBeanLocal employeeManagerBean;
     
     private List<Employee> employees = new ArrayList<Employee>();;
     private List<String> departments;
     private List<String> positions;
     private List<String> statuses;
 
-    @PostConstruct
-    public void init() {
+    public void onPageLoad() {
         employees = employeeManagerBean.findAllEmployees();
         departments = Stream.of(EDepartment.values())
                 .map(EDepartment::toString)

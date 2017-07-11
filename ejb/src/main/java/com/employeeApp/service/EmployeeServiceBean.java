@@ -27,12 +27,9 @@ import java.util.logging.Logger;
  */
 
 @Stateless
-public class EmployeeServiceBean implements IEmployeeServiceBeanLocal {
+public class EmployeeServiceBean implements IEmployeeServiceBeanLocal, Serializable {
 
     private static final Logger LOG = Logger.getLogger(EmployeeServiceBean.class.getName());
-
-    @PersistenceContext(unitName = "EmployeeAppPU")
-    private EntityManager em;
 
     @EJB
     private IEmployeeManagerBeanLocal employeeManagerBean;

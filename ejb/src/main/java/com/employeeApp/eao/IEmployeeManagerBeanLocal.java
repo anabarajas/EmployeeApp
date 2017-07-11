@@ -11,6 +11,7 @@ import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
 
 import javax.ejb.Local;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * @author AnaCris
  */
 @Local
-public interface IEmployeeManagerBeanLocal {
+public interface IEmployeeManagerBeanLocal extends Serializable {
 
     public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate);
 
