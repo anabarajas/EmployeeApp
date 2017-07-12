@@ -45,6 +45,7 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
     private EEmployeeStatus status;
 
     public void onPageLoad() {
+        cleanUp();
         HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         id = Long.valueOf(req.getParameter("id"));
         try {
@@ -79,8 +80,7 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
 
     public String updateEmployee() {
         employeeManagerBean.updateEmployee(employee ,firstName, lastName, country, dateOfBirth, department, position, startDate, status);
-        cleanUp();
-        return "show?faces-redirect=true?id=" + employee.getId();
+        return "show?faces-redirect=true&id=" + employee.getId();
     }
 
     public String deleteEmployee() {

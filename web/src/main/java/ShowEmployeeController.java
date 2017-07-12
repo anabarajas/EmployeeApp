@@ -35,25 +35,6 @@ public class ShowEmployeeController extends AbstractEmployeeController implement
     private Employee employee;
     private Long id;
 
-//    @PostConstruct
-//    public void init() {
-//        HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-//        try {
-//            if (req.getParameter("addEmployeeId") != null && !req.getParameter("addEmployeeId").isEmpty()) {
-//                id = Long.valueOf(req.getParameter("addEmployeeId"));
-//            } else if (req.getParameter("id") != null && !req.getParameter("id").isEmpty()) {
-//                id = Long.valueOf(req.getParameter("id"));
-//            } else {
-//                id = addEmployeeController.getId();
-//            }
-//            employee = employeeManagerBean.findById(id);
-//            LOG.log(Level.INFO, "ShowEmployeeController:init() - fetched employee {0} {1}, id: {2} for rendering of page", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()} );
-//        } catch(Exception e) {
-//            LOG.log(Level.WARNING, "ShowEmployeeController:init() - no value for parameters");
-//        }
-//
-//    }
-
     public ShowEmployeeController() {
     }
 

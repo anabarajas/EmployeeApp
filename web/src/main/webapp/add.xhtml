@@ -8,6 +8,11 @@
 
 <h:body>
     <ui:composition template="template.xhtml">
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:event type="preRenderView" listener="#{addEmployeeController.pageFieldsCleanUp}"/>
+            </f:metadata>
+        </ui:define>
         <ui:define name="title">Add Employee</ui:define>
         <ui:define name="pageTitle">Add New Employee</ui:define>
         <ui:define name="content">
@@ -23,11 +28,10 @@
                 />
                 <div class="row">
                     <div class="form-actions">
-                        <h:commandButton id="backToList"
+                        <h:button id="backToList"
                                          value="Back to List"
-                                         action="list"
+                                         outcome="list"
                                          styleClass="btn form-button"/>
-
                         <h:commandButton id="addEmployee"
                                          action="#{addEmployeeController.addNewEmployee}"
                                          styleClass="btn btn-primary"

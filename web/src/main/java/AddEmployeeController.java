@@ -45,8 +45,7 @@ public class AddEmployeeController implements Serializable {
     public String addNewEmployee() {
         employee = employeeManagerBean.createEmployee(firstName, lastName, dateOfBirth, country, position, department, startDate);
         id = employee.getId();
-        pageFieldsCleanUp();
-        return "show";
+        return "show?faces-redirect=true";
     }
 
     public String getFirstName() {
