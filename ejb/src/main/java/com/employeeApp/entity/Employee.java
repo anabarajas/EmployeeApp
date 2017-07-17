@@ -73,8 +73,6 @@ public class Employee implements Serializable {
     @Column(name = "startDate")
     @Temporal(TemporalType.TIMESTAMP)
     private Date startDate;
-    @Transient
-    private BackgroundCheck backgroundCheck;
 
 
     public Employee() {
@@ -176,14 +174,6 @@ public class Employee implements Serializable {
 
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
-    }
-
-    public BackgroundCheck getBackgroundCheck() {
-        return backgroundCheck;
-    }
-
-    public void setBackgroundCheck(BackgroundCheck backgroundCheck) {
-        this.backgroundCheck = backgroundCheck;
     }
 
     @Override
