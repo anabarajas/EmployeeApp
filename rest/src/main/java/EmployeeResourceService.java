@@ -14,7 +14,7 @@ public class EmployeeResourceService {
     IEmployeeManagerBeanLocal employeeManagerBean;
 
 
-    public EmployeeRepresentation retrieveById(Long id) {
+    public EmployeeRepresentation getEmployeeById(Long id) {
         Employee employee = employeeManagerBean.findById(id);
         EmployeeRepresentation representation = employeeRepresentationConverter.getEmployeeRepresentationByToken(employee);
         return representation;

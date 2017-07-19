@@ -2,10 +2,7 @@ import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.Date;
 
 /**
@@ -15,7 +12,7 @@ import java.util.Date;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EmployeeRepresentation {
 
-    @XmlElement(required=true)
+    @XmlAttribute
     private Long id;
     @XmlElement(required=true)
     private String firstName;
@@ -33,6 +30,9 @@ public class EmployeeRepresentation {
     private EDepartment department;
     @XmlElement
     private Date startDate;
+
+    public EmployeeRepresentation() {
+    }
 
     public Long getId() {
         return id;
