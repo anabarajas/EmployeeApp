@@ -1,5 +1,4 @@
-
-import com.employeeApp.eao.IEmployeeManagerBeanLocal;
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
@@ -9,9 +8,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -31,7 +28,7 @@ import java.util.stream.Stream;
 public class EmployeeListController implements Serializable {
     
     @Inject
-    private IEmployeeManagerBeanLocal employeeManagerBean;
+    private EmployeeManagerBean employeeManagerBean;
     
     private List<Employee> employees = new ArrayList<Employee>();;
     private List<String> departments;

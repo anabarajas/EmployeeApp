@@ -1,12 +1,10 @@
-import com.employeeApp.eao.IEmployeeManagerBeanLocal;
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
 import com.employeeApp.service.EmployeeServiceBean;
-import com.employeeApp.service.IEmployeeServiceBeanLocal;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -28,10 +26,10 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
     private static final Logger LOG = Logger.getLogger(ShowEmployeeController.class.getName());
 
     @Inject
-    private IEmployeeManagerBeanLocal employeeManagerBean;
+    private EmployeeManagerBean employeeManagerBean;
 
     @Inject
-    private IEmployeeServiceBeanLocal employeeServiceBean;
+    private EmployeeServiceBean employeeServiceBean;
 
     private Long id;
     private Employee employee;
@@ -84,7 +82,16 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
     }
 
     public String deleteEmployee() {
-        return employeeServiceBean.removeEmployee(employee);
+        String page = "";
+        try {
+            employeeServiceBean.removeEmployee(employee);
+            page = "delete?faces-redirect=true";
+        } catch (Exception e) {
+            LOG.log(Level.WARNING, "EmployeeServiceBean::remove - Error while removing employee {0} {1} with id: {2}", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
+            page = "failure?faces-redirect=true";
+        }
+        return page;
+
     }
 
     public Employee getEmployee() {

@@ -5,11 +5,12 @@
  */
 package com.employeeApp.eao;
 
-import com.employeeApp.entity.Employee;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
+import com.employeeApp.entity.Employee;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,25 +20,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 /**
  *
  * @author AnaCris
  */
+@LocalBean
 @Stateless
-public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLocal {
+public class EmployeeManagerBean implements Serializable {
 
     private static final Logger LOG = Logger.getLogger(EmployeeManagerBean.class.getName());
 
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-//    protected EntityManager getEntityManager() {
-//        return em;
-//    }
-
-    public void remove(Employee e) {
+    public void remove(Employee e) throws RuntimeException {
        //Employee employeeToRemove = em.find(Employee.class, e.getId());
         Employee employeeToRemove = em.getReference(Employee.class, e.getId());
         em.remove(employeeToRemove);
@@ -93,13 +90,11 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
     }
 
     @SuppressWarnings("unchecked")
-    @Override
     public List<Employee> findAllEmployees() {
         Query q = em.createNamedQuery("Employee.findAll");
         return q.getResultList();
     }
 
-    @Override
     public Employee findById(Long id) {
         Query q = em.createNamedQuery("Employee.findById");
         q.setParameter("id", id);
@@ -107,7 +102,6 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
 
     }
 
-    @Override
     public Employee findByFirstName(String firstName) {
         Query q = em.createNamedQuery("Employee.findByFirstName");
         q.setParameter("firstName", firstName);
@@ -115,7 +109,6 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
 
     }
 
-    @Override
     public Employee findByLastName(String lastName) {
         Query q = em.createNamedQuery("Employee.findByLastName");
         q.setParameter("lastName", lastName);
@@ -123,42 +116,36 @@ public class EmployeeManagerBean implements Serializable, IEmployeeManagerBeanLo
 
     }
 
-    @Override
     public Employee findByDateOfBirth(Date dateOfBirth) {
         Query q = em.createNamedQuery("Employee.findByDateOfBirth");
         q.setParameter("dateOfBirth", dateOfBirth);
         return (Employee) q.getSingleResult();
     }
 
-    @Override
     public Employee findByCountry(String country) {
         Query q = em.createNamedQuery("Employee.findByCountry");
         q.setParameter("country", country);
         return (Employee) q.getSingleResult();
     }
 
-    @Override
     public Employee findByStatus(String status) {
         Query q = em.createNamedQuery("Employee.findByStatus");
         q.setParameter("status", status);
         return (Employee) q.getSingleResult();
     }
 
-    @Override
     public Employee findByPosition(String position) {
         Query q = em.createNamedQuery("Employee.findByPosition");
         q.setParameter("position", position);
         return (Employee) q.getSingleResult();
     }
 
-    @Override
     public Employee findByDepartment(String department) {
         Query q = em.createNamedQuery("Employee.findByDepartment");
         q.setParameter("department", department);
         return (Employee) q.getSingleResult();
     }
 
-    @Override
     public Employee findByStartDate(Date startDate) {
         Query q = em.createNamedQuery("Employee.findByStartDate");
         q.setParameter("startDate", startDate);

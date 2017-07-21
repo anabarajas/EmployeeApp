@@ -7,45 +7,34 @@ package com.employeeApp.eao;
 
 import com.employeeApp.entity.BackgroundCheck;
 
-import java.io.Serializable;
-import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
  * @author AnaCris
  */
 @Stateless
-public class BackgroundCheckManagerBean extends AbstractFacade<BackgroundCheck> implements Serializable, IBackgroundCheckManagerLocal{
+public class BackgroundCheckManagerBean implements Serializable {
 
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
-
-    public BackgroundCheckManagerBean() {
-        super(BackgroundCheck.class);
-    }
-    @Override
     public List<BackgroundCheck> findAllBackgroundChecks() {
         Query q = em.createNamedQuery("BackgroundCheck.findAll");
         return q.getResultList();
     }
     
-    @Override
     public BackgroundCheck findById(Integer id) {
         Query q = em.createNamedQuery("BackgroundCheck.findById");
         q.setParameter("id", id);
         return (BackgroundCheck) q.getSingleResult();
     }
     
-    @Override
     public BackgroundCheck findByStatus(String status) {
         Query q = em.createNamedQuery("BackgroundCheck.findByStatus");
         q.setParameter("status", status);

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import com.employeeApp.eao.IEmployeeManagerBeanLocal;
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.Employee;
 
 import javax.enterprise.context.SessionScoped;
@@ -27,7 +27,7 @@ public class ShowEmployeeController extends AbstractEmployeeController implement
     private static final Logger LOG = Logger.getLogger(ShowEmployeeController.class.getName());
 
     @Inject
-    private IEmployeeManagerBeanLocal employeeManagerBean;
+    private EmployeeManagerBean employeeManagerBean;
 
     @Inject
     private AddEmployeeController addEmployeeController;

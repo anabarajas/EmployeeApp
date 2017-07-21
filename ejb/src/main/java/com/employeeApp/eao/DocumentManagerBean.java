@@ -19,55 +19,41 @@ import java.util.List;
  * @author AnaCris
  */
 @Stateless
-public class DocumentManagerBean extends AbstractFacade<Document> implements Serializable, IDocumentManagerBeanLocal {
+public class DocumentManagerBean implements Serializable {
 
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-    @Override
-    protected EntityManager getEntityManager() {
-        return em;
-    }
 
-    public DocumentManagerBean() {
-        super(Document.class);
-    }
-    
-    @Override
-     public List<Document> findAllDocuments() {
+    public List<Document> findAllDocuments() {
         Query q = em.createNamedQuery("Document.findAll");
         return q.getResultList();
     }
-    
-    @Override
+
     public Document findById(Integer id) {
         Query q = em.createNamedQuery("Document.findById");
         q.setParameter("id", id);
         return (Document) q.getSingleResult();
     }
-    
-    @Override
+
     public Document findByDocumentType(String documentType) {
         Query q = em.createNamedQuery("Document.findByDocumentType");
         q.setParameter("documentType", documentType);
         return (Document) q.getSingleResult();
     }
     
-    @Override
     public Document findByDocumentNumber(Integer documentNumber) {
         Query q = em.createNamedQuery("Document.findByDocumentNumber");
         q.setParameter("documentNumber", documentNumber);
         return (Document) q.getSingleResult();
     }
     
-    @Override
     public Document findByEmployeeId(Integer employeeId) {
         Query q = em.createNamedQuery("Document.findByEmployeeId");
         q.setParameter("employeeId", employeeId);
         return (Document) q.getSingleResult();
     }
     
-    @Override
     public Document findByDocumentReviewStatus(String documentReviewStatus) {
         Query q = em.createNamedQuery("Document.findByDocumentReviewStatus");
         q.setParameter("documentReviewStatus", documentReviewStatus);

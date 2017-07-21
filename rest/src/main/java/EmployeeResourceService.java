@@ -1,4 +1,4 @@
-import com.employeeApp.eao.IEmployeeManagerBeanLocal;
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.Employee;
 
 import javax.inject.Inject;
@@ -11,7 +11,7 @@ public class EmployeeResourceService {
     private EmployeeRepresentationConverter employeeRepresentationConverter;
 
     @Inject
-    IEmployeeManagerBeanLocal employeeManagerBean;
+    EmployeeManagerBean employeeManagerBean;
 
 
     public EmployeeRepresentation getEmployeeById(Long id) {

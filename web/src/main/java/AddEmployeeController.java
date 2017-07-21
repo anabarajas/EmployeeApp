@@ -1,7 +1,6 @@
-import com.employeeApp.eao.IEmployeeManagerBeanLocal;
+import com.employeeApp.eao.EmployeeManagerBean;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
-import com.employeeApp.entity.EEmployeeStatus;
 import com.employeeApp.entity.Employee;
 
 import javax.enterprise.context.SessionScoped;
@@ -18,7 +17,7 @@ import java.util.Date;
 public class AddEmployeeController implements Serializable {
 
     @Inject
-    private IEmployeeManagerBeanLocal employeeManagerBean;
+    private EmployeeManagerBean employeeManagerBean;
 
     private Employee employee;
     private Long id;
