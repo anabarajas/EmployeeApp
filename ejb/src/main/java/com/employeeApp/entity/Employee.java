@@ -196,9 +196,9 @@ public class Employee implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.mycompany.entity.Employee[ id=" + id + " ]";
-    }
-    
+//    @Override
+//    public String toString() {
+//        return "com.mycompany.entity.Employee[ id=" + id + " ]";
+//    }
+//
 }

@@ -1,13 +1,14 @@
 package com.EmployeeApp.rest;
 
-import javax.ws.rs.*;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * Created by abarajas on 6/20/17.
  */
-@Path("employees")
+@Path("/employees")
 public class EmployeeResource {
     // Make this resource per-request, stateless
    // private EmployeeResourceService employeeResourceService = new EmployeeResourceService();

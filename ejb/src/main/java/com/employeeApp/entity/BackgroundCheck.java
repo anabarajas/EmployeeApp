@@ -106,10 +106,10 @@ public class BackgroundCheck implements Serializable {
         }
         return true;
     }
-
-    @Override
-    public String toString() {
-        return "com.mycompany.entity.BackgroundCheck[ id=" + id + " ]";
-    }
+//
+//    @Override
+//    public String toString() {
+//        return "com.mycompany.entity.BackgroundCheck[ id=" + id + " ]";
+//    }
     
 }

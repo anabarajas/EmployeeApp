@@ -7,6 +7,7 @@ package com.employeeApp.eao;
 
 import com.employeeApp.entity.BackgroundCheck;
 
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -19,6 +20,7 @@ import java.util.List;
  * @author AnaCris
  */
 @Stateless
+@LocalBean
 public class BackgroundCheckManagerBean implements Serializable {
 
     @PersistenceContext(unitName = "EmployeeAppPU")

@@ -136,9 +136,9 @@ public class Document implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "com.mycompany.entity.Document[ id=" + id + " ]";
-    }
+//    @Override
+//    public String toString() {
+//        return "com.mycompany.entity.Document[ id=" + id + " ]";
+//    }
     
 }
