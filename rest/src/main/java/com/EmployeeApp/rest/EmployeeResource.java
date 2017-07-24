@@ -1,9 +1,8 @@
 package com.EmployeeApp.rest;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by abarajas on 6/20/17.
@@ -11,23 +10,25 @@ import javax.ws.rs.core.MediaType;
 @Path("/employees")
 public class EmployeeResource {
     // Make this resource per-request, stateless
-   // private EmployeeResourceService employeeResourceService = new EmployeeResourceService();
+    private EmployeeResourceService employeeResourceService;
 
-//    @GET
-//    @Path("/{id}")
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public EmployeeRepresentation getEmployee(@PathParam("id") Long id) {
-//        EmployeeRepresentation representation = employeeResourceService.getEmployeeById(id);
-//        if (representation != null) {
-//            return representation;
-//        } else {
-//            throw new WebApplicationException(Response.Status.NOT_FOUND);
-//        }
-//    }
+    public EmployeeResource() {
+        initializeDependencies();
+    }
+
+    private void initializeDependencies() {
+        employeeResourceService = new EmployeeResourceService();
+    }
 
     @GET
-    @Produces(MediaType.TEXT_PLAIN)
-    public String helloWorld() {
-        return "Hello world!";
+    @Path("/{id}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public EmployeeRepresentation getEmployee(@PathParam("id") Long id) {
+        EmployeeRepresentation representation = employeeResourceService.getEmployeeById(id);
+        if (representation != null) {
+            return representation;
+        } else {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
 }
