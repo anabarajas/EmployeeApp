@@ -2,7 +2,6 @@ package com.EmployeeApp.rest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 /**
  * Created by abarajas on 6/20/17.
@@ -27,8 +26,17 @@ public class EmployeeResource {
         EmployeeRepresentation representation = employeeResourceService.getEmployeeById(id);
         if (representation != null) {
             return representation;
+//            Response.ResponseBuilder ok = Response.ok();
+//            ok.entity(representation).build();
+//            ok.build();
         } else {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+            throw new WebApplicationException(404);
         }
     }
+
+//    @GET
+//    @Produces("text/plain")
+//    public String hello() {
+//        return "Hello Ana!";
+//    }
 }
