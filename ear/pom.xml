@@ -33,6 +33,7 @@
                 <version>2.8</version>
                 <configuration>
                     <version>6</version>
+                    <applicationName>employeeApp</applicationName>
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                 </configuration>
             </plugin>

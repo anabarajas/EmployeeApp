@@ -7,8 +7,8 @@ import com.employeeApp.entity.Employee;
  */
 public class EmployeeRepresentationConverter {
 
-    public com.EmployeeApp.rest.EmployeeRepresentation getEmployeeRepresentationByToken(Employee e) {
-        com.EmployeeApp.rest.EmployeeRepresentation employeeRepresentation = new com.EmployeeApp.rest.EmployeeRepresentation();
+    public static EmployeeRepresentation getEmployeeRepresentationByToken(Employee e) {
+        EmployeeRepresentation employeeRepresentation = new EmployeeRepresentation();
         employeeRepresentation.setId(e.getId());
         employeeRepresentation.setFirstName(e.getFirstName());
         employeeRepresentation.setLastName(e.getLastName());
@@ -17,9 +17,7 @@ public class EmployeeRepresentationConverter {
         employeeRepresentation.setDateOfBirth(e.getDateOfBirth());
         employeeRepresentation.setPosition(e.getPosition());
         employeeRepresentation.setStartDate(e.getStartDate());
-      //  employeeRepresentation.set
-
-        return null;
+        return employeeRepresentation;
     }
 
 }
