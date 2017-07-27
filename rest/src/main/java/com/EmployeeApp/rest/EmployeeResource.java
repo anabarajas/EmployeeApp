@@ -2,6 +2,7 @@ package com.EmployeeApp.rest;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by abarajas on 6/20/17.
@@ -22,13 +23,13 @@ public class EmployeeResource {
     @GET
     @Path("/{id}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public EmployeeRepresentation getEmployee(@PathParam("id") Long id) {
+    public Response getEmployee(@PathParam("id") Long id) {
         EmployeeRepresentation representation = employeeResourceService.getEmployeeById(id);
         if (representation != null) {
-            return representation;
-//            Response.ResponseBuilder ok = Response.ok();
-//            ok.entity(representation).build();
-//            ok.build();
+//            return representation;
+            Response.ResponseBuilder ok = Response.ok();
+            ok.entity(representation).build();
+            return ok.build();
         } else {
             throw new WebApplicationException(404);
         }

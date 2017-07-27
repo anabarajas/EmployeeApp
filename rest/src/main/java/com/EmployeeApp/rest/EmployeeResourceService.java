@@ -13,8 +13,8 @@ import java.util.logging.Logger;
  */
 public class EmployeeResourceService {
 
-    private static Logger LOG = Logger.getLogger(EmployeeResourceService.class.getName());
-    private static String LOOK_UP_NAME = "java:global/employeeApp/ejb/EmployeeManagerBean";
+    private static final Logger LOG = Logger.getLogger(EmployeeResourceService.class.getName());
+    private static String LOOK_UP_NAME = "java:global/employeeApp/ejb-1.0-SNAPSHOT/EmployeeManagerBean";
     private EmployeeManagerBean employeeManagerBean;
 
 
@@ -31,7 +31,5 @@ public class EmployeeResourceService {
         EmployeeRepresentation representation = EmployeeRepresentationConverter.getEmployeeRepresentationByToken(employee);
         return representation;
     }
-
-
 
 }

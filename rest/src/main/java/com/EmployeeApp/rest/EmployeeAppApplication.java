@@ -8,7 +8,7 @@ import javax.ws.rs.ApplicationPath;
  * Created by abarajas on 6/23/17.
  */
 
-@ApplicationPath("EmployeeApp")
+@ApplicationPath("/")
 public class EmployeeAppApplication extends ResourceConfig {
 
     public EmployeeAppApplication() {
