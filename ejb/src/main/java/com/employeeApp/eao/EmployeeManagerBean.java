@@ -50,7 +50,7 @@ public class EmployeeManagerBean implements Serializable {
             employee.setPosition(position);
             employee.setDepartment(department);
             employee.setStartDate(startDate);
-            employee.setStatus(determineNewEmployeeStatus(country));
+            employee.setStatus(status);
             em.merge(employee);
             LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
         } catch (Exception ex) {

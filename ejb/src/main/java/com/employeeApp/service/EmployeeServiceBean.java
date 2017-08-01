@@ -31,4 +31,14 @@ public class EmployeeServiceBean implements Serializable {
     public void removeEmployee(Employee e) throws RuntimeException {
         employeeManagerBean.remove(e);
     }
+
+    public Employee updateEmployeeById(Long id, Employee updatedFieldsEmployee) {
+        Employee currentEmployee = employeeManagerBean.findById(id);
+        employeeManagerBean.updateEmployee(currentEmployee, updatedFieldsEmployee.getFirstName(), updatedFieldsEmployee.getLastName(),
+                updatedFieldsEmployee.getCountry(), updatedFieldsEmployee.getDateOfBirth(), updatedFieldsEmployee.getDepartment(),
+                updatedFieldsEmployee.getPosition(), updatedFieldsEmployee.getStartDate(), updatedFieldsEmployee.getStatus());
+        return currentEmployee;
+    }
+
+
 }
