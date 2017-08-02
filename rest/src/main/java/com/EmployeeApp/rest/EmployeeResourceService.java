@@ -6,6 +6,7 @@ import com.employeeApp.service.EmployeeServiceBean;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.validation.ConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,19 +33,26 @@ public class EmployeeResourceService {
 
     public EmployeeRepresentation getEmployeeById(Long id) {
         Employee employee = employeeManagerBean.findById(id);
-        EmployeeRepresentation representation = EmployeeRepresentationConverter.getEmployeeRepresentation(employee);
+        EmployeeRepresentation representation = EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
         return representation;
     }
 
     public EmployeeRepresentation createEmployeeWithNewId(EmployeeRepresentation e) {
         Employee employee = employeeManagerBean.createEmployee(e.getFirstName(), e.getLastName(), e.getDateOfBirth(),
                     e.getCountry(), e.getPosition(), e.getDepartment(), e.getStartDate());
-        return EmployeeRepresentationConverter.getEmployeeRepresentation(employee);
+        return EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
     }
 
-    public EmployeeRepresentation updateEmployeeById(Long id, EmployeeRepresentation representation) {
-        Employee employee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(representation);
-        return EmployeeRepresentationConverter.getEmployeeRepresentation(employeeServiceBean.updateEmployeeById(id, employee));
+    public EmployeeRepresentation updateEmployeeById(Long currentEmployeeId, EmployeeRepresentation updatedRepresentation) {
+        try{
+            Employee updatedEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
+            employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedEmployee);
+        } catch (ConstraintViolationException e) {
+            LOG.log(Level.SEVERE,"Exception: ");
+            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
+        }
+
+        return getEmployeeById(currentEmployeeId);
     }
 
 }

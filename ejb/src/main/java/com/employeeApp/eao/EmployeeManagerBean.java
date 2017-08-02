@@ -52,7 +52,7 @@ public class EmployeeManagerBean implements Serializable {
             employee.setStartDate(startDate);
             employee.setStatus(status);
             em.merge(employee);
-            LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
+            LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} was updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
         } catch (Exception ex) {
             LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee");
         }

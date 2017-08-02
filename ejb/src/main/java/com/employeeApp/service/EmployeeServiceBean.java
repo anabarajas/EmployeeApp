@@ -11,7 +11,9 @@ import com.employeeApp.entity.Employee;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.validation.ConstraintViolationException;
 import java.io.Serializable;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -32,13 +34,17 @@ public class EmployeeServiceBean implements Serializable {
         employeeManagerBean.remove(e);
     }
 
-    public Employee updateEmployeeById(Long id, Employee updatedFieldsEmployee) {
-        Employee currentEmployee = employeeManagerBean.findById(id);
-        employeeManagerBean.updateEmployee(currentEmployee, updatedFieldsEmployee.getFirstName(), updatedFieldsEmployee.getLastName(),
-                updatedFieldsEmployee.getCountry(), updatedFieldsEmployee.getDateOfBirth(), updatedFieldsEmployee.getDepartment(),
-                updatedFieldsEmployee.getPosition(), updatedFieldsEmployee.getStartDate(), updatedFieldsEmployee.getStatus());
-        return currentEmployee;
-    }
+    public void updateEmployeeById(Long currentEmployeeId, Employee updatedEmployee) {
+        Employee currentEmployee = employeeManagerBean.findById(currentEmployeeId);
+        try{
+            employeeManagerBean.updateEmployee(currentEmployee, updatedEmployee.getFirstName(), updatedEmployee.getLastName(),
+                updatedEmployee.getCountry(), updatedEmployee.getDateOfBirth(), updatedEmployee.getDepartment(),
+                updatedEmployee.getPosition(), updatedEmployee.getStartDate(), updatedEmployee.getStatus());
 
+        } catch (ConstraintViolationException e) {
+            LOG.log(Level.SEVERE,"Exception: ");
+            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
+        }
+    }
 
 }

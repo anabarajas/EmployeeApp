@@ -1,5 +1,7 @@
 package com.EmployeeApp.rest;
 
+import com.employeeApp.entity.Employee;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -47,14 +49,13 @@ public class EmployeeResource {
     @PUT
     @Path("/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response updateEmployee(@PathParam("id") Long id, EmployeeRepresentation representation) {
-        EmployeeRepresentation employeeWithUpdatedFields = employeeResourceService.getEmployeeById(id);
-        if (employeeWithUpdatedFields == null) {
+    public Response updateEmployee(@PathParam("id") Long existingEmployeeId, EmployeeRepresentation updatedFieldsRepresentation) {
+        if (employeeResourceService.getEmployeeById(existingEmployeeId) == null) {
             throw new WebApplicationException(Response.Status.NOT_FOUND);
         } else {
-            if (representation != null) {
-                EmployeeRepresentation updatedEmployee = employeeResourceService.updateEmployeeById(id, representation);
-                return Response.ok().entity(updatedEmployee).build();
+            if (updatedFieldsRepresentation != null) { // TODO::add here validation for representation
+                EmployeeRepresentation updatedEmployeeRepresentation = employeeResourceService.updateEmployeeById(existingEmployeeId, updatedFieldsRepresentation);
+                return Response.ok().entity(updatedEmployeeRepresentation).build();
             } else {
                 throw new WebApplicationException(Response.Status.BAD_REQUEST);
             }
