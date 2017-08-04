@@ -84,7 +84,7 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
     public String deleteEmployee() {
         String page = "";
         try {
-            employeeServiceBean.removeEmployee(employee);
+            employeeManagerBean.removeEmployee(employee);
             page = "delete?faces-redirect=true";
         } catch (Exception e) {
             LOG.log(Level.WARNING, "EmployeeServiceBean::remove - Error while removing employee {0} {1} with id: {2}", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});

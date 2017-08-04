@@ -25,13 +25,14 @@ import java.util.logging.Logger;
 @Stateless
 public class EmployeeServiceBean implements Serializable {
 
-    private static final Logger LOG = Logger.getLogger(EmployeeServiceBean.class.getName());
-
     @EJB
     private EmployeeManagerBean employeeManagerBean;
 
-    public void removeEmployee(Employee e) throws RuntimeException {
-        employeeManagerBean.remove(e);
+    public void removeEmployeeById(Long employeeId) {
+        Employee currentEmployee = employeeManagerBean.findById(employeeId);
+        if (currentEmployee != null) {
+            employeeManagerBean.removeEmployee(currentEmployee);
+        }
     }
 
     public Employee updateEmployeeById(Long currentEmployeeId, Employee updatedEmployee) {

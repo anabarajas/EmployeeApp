@@ -7,6 +7,8 @@ import com.employeeApp.service.EmployeeServiceBean;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.validation.ConstraintViolationException;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,24 +34,34 @@ public class EmployeeResourceService {
     }
 
     public EmployeeRepresentation getEmployeeById(Long id) {
-        EmployeeRepresentation representation = null;
+        EmployeeRepresentation representation;
         Employee employee = employeeManagerBean.findById(id);
         if (employee != null) {
             representation = EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
+        } else {
+            throw new WebApplicationException(Response.Status.NOT_FOUND); // TODO: change rerror message returned!
         }
         return representation;
     }
 
     public EmployeeRepresentation createEmployeeWithNewId(EmployeeRepresentation e) {
         Employee employee = employeeManagerBean.createEmployee(e.getFirstName(), e.getLastName(), e.getDateOfBirth(),
-                    e.getCountry(), e.getPosition(), e.getDepartment(), e.getStartDate());
+                e.getCountry(), e.getPosition(), e.getDepartment(), e.getStartDate());
         return EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
     }
 
-    public EmployeeRepresentation updateEmployeeById(Long currentEmployeeId, EmployeeRepresentation updatedRepresentation) {
-        Employee updatedEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
-        Employee currentUpdatedEmployee = employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedEmployee);
-        return EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(currentUpdatedEmployee);
+    public EmployeeRepresentation updateEmployeeById(Long currentEmployeeId, EmployeeRepresentation fieldsToUpdateInRepresentation) {
+        EmployeeRepresentation updatedRepresentation = null;
+        Employee currentUpdatedEmployee = employeeServiceBean.updateEmployeeById(currentEmployeeId,
+                EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(fieldsToUpdateInRepresentation));
+        if (currentUpdatedEmployee != null){
+            updatedRepresentation = EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(currentUpdatedEmployee);
+        }
+        return updatedRepresentation;
+    }
+
+    public void deleteEmployeeById(Long id) {
+        employeeServiceBean.removeEmployeeById(id);
     }
 
 }
