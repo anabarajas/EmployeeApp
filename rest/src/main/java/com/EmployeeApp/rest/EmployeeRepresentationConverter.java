@@ -8,16 +8,19 @@ import com.employeeApp.entity.Employee;
 public class EmployeeRepresentationConverter {
 
     public static EmployeeRepresentation getEmployeeRepresentationFromEmployee(Employee e) {
-        EmployeeRepresentation employeeRepresentation = new EmployeeRepresentation();
-        employeeRepresentation.setId(e.getId());
-        employeeRepresentation.setFirstName(e.getFirstName());
-        employeeRepresentation.setLastName(e.getLastName());
-        employeeRepresentation.setCountry(e.getCountry());
-        employeeRepresentation.setDepartment(e.getDepartment());
-        employeeRepresentation.setDateOfBirth(e.getDateOfBirth());
-        employeeRepresentation.setPosition(e.getPosition());
-        employeeRepresentation.setStartDate(e.getStartDate());
-        employeeRepresentation.setStatus(e.getStatus());
+        EmployeeRepresentation employeeRepresentation = null;
+        if (e != null) {
+            employeeRepresentation = new EmployeeRepresentation();
+            employeeRepresentation.setId(e.getId());
+            employeeRepresentation.setFirstName(e.getFirstName());
+            employeeRepresentation.setLastName(e.getLastName());
+            employeeRepresentation.setCountry(e.getCountry());
+            employeeRepresentation.setDepartment(e.getDepartment());
+            employeeRepresentation.setDateOfBirth(e.getDateOfBirth());
+            employeeRepresentation.setPosition(e.getPosition());
+            employeeRepresentation.setStartDate(e.getStartDate());
+            employeeRepresentation.setStatus(e.getStatus());
+        }
         return employeeRepresentation;
     }
 

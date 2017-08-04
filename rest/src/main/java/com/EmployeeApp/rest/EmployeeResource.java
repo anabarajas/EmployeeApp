@@ -2,10 +2,13 @@ package com.EmployeeApp.rest;
 
 import com.employeeApp.entity.Employee;
 
+import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by abarajas on 6/20/17.
@@ -13,6 +16,8 @@ import java.net.URI;
 @Path("/employees")
 public class EmployeeResource {
     // Make this resource per-request, stateless
+    private static final Logger LOG = Logger.getLogger(EmployeeResource.class.getName());
+
     private EmployeeResourceService employeeResourceService;
 
     public EmployeeResource() {

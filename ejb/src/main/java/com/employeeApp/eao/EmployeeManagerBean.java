@@ -12,9 +12,8 @@ import com.employeeApp.entity.Employee;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import javax.validation.ConstraintViolationException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -52,9 +51,13 @@ public class EmployeeManagerBean implements Serializable {
             employee.setStartDate(startDate);
             employee.setStatus(status);
             em.merge(employee);
+            em.flush();
             LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} was updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
+        } catch (ConstraintViolationException e) {
+            LOG.log(Level.SEVERE,"EmployeeManagerBean::updateEmployee - ConstraintViolationException: ");
+            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
         } catch (Exception ex) {
-            LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee");
+            LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee", ex.getMessage());
         }
     }
 
@@ -96,10 +99,15 @@ public class EmployeeManagerBean implements Serializable {
     }
 
     public Employee findById(Long id) {
-        Query q = em.createNamedQuery("Employee.findById");
-        q.setParameter("id", id);
-        return (Employee) q.getSingleResult();
-
+        Employee e = null;
+        try {
+            Query q = em.createNamedQuery("Employee.findById");
+            q.setParameter("id", id);
+            e = (Employee) q.getSingleResult();
+        } catch (NoResultException ex) {
+            LOG.log(Level.SEVERE, "EmployeeManagerBean::findById -" + "could not find an Employee with id: " + id.toString(), ex.getMessage());
+        }
+        return e;
     }
 
     public Employee findByFirstName(String firstName) {

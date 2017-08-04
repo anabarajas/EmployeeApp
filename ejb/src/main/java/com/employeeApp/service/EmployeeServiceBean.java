@@ -34,17 +34,15 @@ public class EmployeeServiceBean implements Serializable {
         employeeManagerBean.remove(e);
     }
 
-    public void updateEmployeeById(Long currentEmployeeId, Employee updatedEmployee) {
+    public Employee updateEmployeeById(Long currentEmployeeId, Employee updatedEmployee) {
         Employee currentEmployee = employeeManagerBean.findById(currentEmployeeId);
-        try{
+        if (currentEmployee != null) {
             employeeManagerBean.updateEmployee(currentEmployee, updatedEmployee.getFirstName(), updatedEmployee.getLastName(),
-                updatedEmployee.getCountry(), updatedEmployee.getDateOfBirth(), updatedEmployee.getDepartment(),
-                updatedEmployee.getPosition(), updatedEmployee.getStartDate(), updatedEmployee.getStatus());
-
-        } catch (ConstraintViolationException e) {
-            LOG.log(Level.SEVERE,"Exception: ");
-            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
+                    updatedEmployee.getCountry(), updatedEmployee.getDateOfBirth(), updatedEmployee.getDepartment(),
+                    updatedEmployee.getPosition(), updatedEmployee.getStartDate(), updatedEmployee.getStatus());
         }
+        return currentEmployee;
     }
 
 }
+

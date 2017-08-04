@@ -32,8 +32,11 @@ public class EmployeeResourceService {
     }
 
     public EmployeeRepresentation getEmployeeById(Long id) {
+        EmployeeRepresentation representation = null;
         Employee employee = employeeManagerBean.findById(id);
-        EmployeeRepresentation representation = EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
+        if (employee != null) {
+            representation = EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(employee);
+        }
         return representation;
     }
 
@@ -44,15 +47,9 @@ public class EmployeeResourceService {
     }
 
     public EmployeeRepresentation updateEmployeeById(Long currentEmployeeId, EmployeeRepresentation updatedRepresentation) {
-        try{
-            Employee updatedEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
-            employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedEmployee);
-        } catch (ConstraintViolationException e) {
-            LOG.log(Level.SEVERE,"Exception: ");
-            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
-        }
-
-        return getEmployeeById(currentEmployeeId);
+        Employee updatedEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
+        Employee currentUpdatedEmployee = employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedEmployee);
+        return EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(currentUpdatedEmployee);
     }
 
 }
