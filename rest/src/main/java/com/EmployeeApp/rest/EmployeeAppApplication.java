@@ -2,10 +2,13 @@ package com.EmployeeApp.rest;
 
 import org.glassfish.jersey.server.ResourceConfig;
 
+import javax.ws.rs.ApplicationPath;
+
 /**
  * Created by abarajas on 6/23/17.
  */
 
+@ApplicationPath("/")
 public class EmployeeAppApplication extends ResourceConfig {
 
     public EmployeeAppApplication() {

@@ -24,7 +24,7 @@ import java.util.Collection;
     , @NamedQuery(name = "BackgroundCheck.findByStatus", query = "SELECT b FROM BackgroundCheck b WHERE b.status = :status")})
 public class BackgroundCheck implements Serializable {
 
-       private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)

@@ -12,12 +12,12 @@ import com.employeeApp.entity.Employee;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.*;
+import javax.validation.ConstraintViolationException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -34,7 +34,7 @@ public class EmployeeManagerBean implements Serializable {
     @PersistenceContext(unitName = "EmployeeAppPU")
     private EntityManager em;
 
-    public void remove(Employee e) throws RuntimeException {
+    public void removeEmployee(Employee e) throws RuntimeException {
        //Employee employeeToRemove = em.find(Employee.class, e.getId());
         Employee employeeToRemove = em.getReference(Employee.class, e.getId());
         em.remove(employeeToRemove);
@@ -50,11 +50,17 @@ public class EmployeeManagerBean implements Serializable {
             employee.setPosition(position);
             employee.setDepartment(department);
             employee.setStartDate(startDate);
-            employee.setStatus(determineNewEmployeeStatus(country));
+            employee.setStatus(status);
             em.merge(employee);
-            LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
+            LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} was updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
         } catch (Exception ex) {
-            LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee");
+            LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee", ex.getMessage());
+            if (ex instanceof ConstraintViolationException) {
+                LOG.log(Level.SEVERE,"EmployeeManagerBean::updateEmployee - ConstraintViolationException: ");
+                ConstraintViolationException cvx = (ConstraintViolationException) ex;
+                cvx.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
+            }
+
         }
     }
 
@@ -96,10 +102,14 @@ public class EmployeeManagerBean implements Serializable {
     }
 
     public Employee findById(Long id) {
-        Query q = em.createNamedQuery("Employee.findById");
-        q.setParameter("id", id);
-        return (Employee) q.getSingleResult();
-
+        try {
+            Query q = em.createNamedQuery("Employee.findById");
+            q.setParameter("id", id);
+            return (Employee) q.getSingleResult();
+        } catch (NoResultException ex) {
+            LOG.log(Level.SEVERE, "EmployeeManagerBean::findById -" + "could not find an Employee with id: " + id.toString(), ex.getMessage());
+            return null;
+        }
     }
 
     public Employee findByFirstName(String firstName) {
