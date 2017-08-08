@@ -8,9 +8,7 @@ import com.employeeApp.entity.Employee;
 public class EmployeeRepresentationConverter {
 
     public static EmployeeRepresentation getEmployeeRepresentationFromEmployee(Employee e) {
-        EmployeeRepresentation employeeRepresentation = null;
-        if (e != null) {
-            employeeRepresentation = new EmployeeRepresentation();
+        EmployeeRepresentation employeeRepresentation = new EmployeeRepresentation();
             employeeRepresentation.setId(e.getId());
             employeeRepresentation.setFirstName(e.getFirstName());
             employeeRepresentation.setLastName(e.getLastName());
@@ -20,7 +18,6 @@ public class EmployeeRepresentationConverter {
             employeeRepresentation.setPosition(e.getPosition());
             employeeRepresentation.setStartDate(e.getStartDate());
             employeeRepresentation.setStatus(e.getStatus());
-        }
         return employeeRepresentation;
     }
 

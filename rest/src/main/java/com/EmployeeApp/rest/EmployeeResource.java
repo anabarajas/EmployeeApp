@@ -34,7 +34,6 @@ public class EmployeeResource {
     public Response getEmployee(@PathParam("id") Long id) {
         EmployeeRepresentation representation = employeeResourceService.getEmployeeById(id);
         if (representation != null) {
-//            return representation;
             Response.ResponseBuilder ok = Response.ok();
             ok.entity(representation).build();
             return ok.build();
@@ -55,17 +54,23 @@ public class EmployeeResource {
     @Path("/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response updateEmployee(@PathParam("id") Long existingEmployeeId, EmployeeRepresentation updatedFieldsRepresentation) {
-        if (employeeResourceService.getEmployeeById(existingEmployeeId) == null) {
-            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        if (updatedFieldsRepresentation != null) { // TODO::add here validation for representation
+            EmployeeRepresentation updatedEmployeeRepresentation = employeeResourceService.updateEmployeeById(existingEmployeeId, updatedFieldsRepresentation);
+            return Response.ok().entity(updatedEmployeeRepresentation).build();
         } else {
-            if (updatedFieldsRepresentation != null) { // TODO::add here validation for representation
-                EmployeeRepresentation updatedEmployeeRepresentation = employeeResourceService.updateEmployeeById(existingEmployeeId, updatedFieldsRepresentation);
-                return Response.ok().entity(updatedEmployeeRepresentation).build();
-            } else {
-                throw new WebApplicationException(Response.Status.BAD_REQUEST);
-            }
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response deleteEmployee(@PathParam("id") Long id) {
+        // TODO : add appropriate response when deleted and for errors
+        employeeResourceService.deleteEmployeeById(id);
+        return Response.noContent().build();
+    }
+    
 
 //    @GET
 //    @Produces("text/plain")
