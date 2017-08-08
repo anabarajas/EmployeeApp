@@ -26,6 +26,7 @@
             <artifactId>javaee-web-api</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--JAX-RX -->
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
