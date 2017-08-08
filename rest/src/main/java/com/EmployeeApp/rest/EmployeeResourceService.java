@@ -47,9 +47,19 @@ public class EmployeeResourceService {
     }
 
     public EmployeeRepresentation updateEmployeeById(Long currentEmployeeId, EmployeeRepresentation updatedRepresentation) {
-        Employee updatedEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
-        Employee currentUpdatedEmployee = employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedEmployee);
+        Employee updatedFieldsEmployee = EmployeeRepresentationConverter.getEmployeeFromEmployeeRepresentation(updatedRepresentation);
+        Employee currentUpdatedEmployee = null;
+        try {
+            currentUpdatedEmployee = employeeServiceBean.updateEmployeeById(currentEmployeeId, updatedFieldsEmployee);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE,"EmployeeResourceBean::updateEmployee - Error while updating employee: {0}", new Object[]{e.getCause().getCause()});
+            if (e.getCause().getCause() instanceof ConstraintViolationException){
+                ConstraintViolationException cvx = (ConstraintViolationException) e.getCause().getCause();
+                cvx.getConstraintViolations().forEach(err -> LOG.log(Level.SEVERE, err.getPropertyPath().toString(), err.getMessage()));
+            }
+        }
         return EmployeeRepresentationConverter.getEmployeeRepresentationFromEmployee(currentUpdatedEmployee);
+
     }
 
 }

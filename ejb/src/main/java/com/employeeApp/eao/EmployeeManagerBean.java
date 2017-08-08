@@ -51,11 +51,7 @@ public class EmployeeManagerBean implements Serializable {
             employee.setStartDate(startDate);
             employee.setStatus(status);
             em.merge(employee);
-            em.flush();
             LOG.log(Level.INFO, "Employee {0} {1}, with id: {2} was updated!", new Object[]{employee.getFirstName(), employee.getLastName(), employee.getId()});
-        } catch (ConstraintViolationException e) {
-            LOG.log(Level.SEVERE,"EmployeeManagerBean::updateEmployee - ConstraintViolationException: ");
-            e.getConstraintViolations().forEach(err->LOG.log(Level.SEVERE,err.toString()));
         } catch (Exception ex) {
             LOG.log(Level.WARNING, "EmployeeManagerBean::updateEmployee - Error while updating employee", ex.getMessage());
         }
