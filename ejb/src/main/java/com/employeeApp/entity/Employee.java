@@ -30,45 +30,36 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "Employee.findByStartDate", query = "SELECT e FROM Employee e WHERE e.startDate = :startDate")})
 public class Employee implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Long id;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "firstName")
     private String firstName;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "lastName")
     private String lastName;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "dateOfBirth")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfBirth;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "country")
-    private String country;
-    @Basic(optional = false)
+    @Enumerated(EnumType.STRING)
+    private ECountry country;
     @NotNull
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private EEmployeeStatus status;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "position")
     @Enumerated(EnumType.STRING)
     private EEmployeePosition position;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "department")
     @Enumerated(EnumType.STRING)
     private EDepartment department;
-    @Basic(optional = false)
     @NotNull
     @Column(name = "startDate")
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,7 +75,7 @@ public class Employee implements Serializable {
         this.id = id;
     }
 
-    public Employee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeeStatus status, EEmployeePosition position, EDepartment department, Date startDate) {
+    public Employee(String firstName, String lastName, Date dateOfBirth, ECountry country, EEmployeeStatus status, EEmployeePosition position, EDepartment department, Date startDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
@@ -94,17 +85,6 @@ public class Employee implements Serializable {
         this.department = department;
         this.startDate = startDate;
     }
-
-//    public Employee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeeStatus status, EEmployeePosition position, EDepartment department, Date startDate) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.dateOfBirth = dateOfBirth;
-//        this.country = country;
-//        this.status = status;
-//        this.position = position;
-//        this.department = department;
-//        this.startDate = startDate;
-//    }
 
     public Long getId() {
         return id;
@@ -138,11 +118,11 @@ public class Employee implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCountry() {
+    public ECountry getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(ECountry country) {
         this.country = country;
     }
 
@@ -206,9 +186,4 @@ public class Employee implements Serializable {
         return true;
     }
 
-//    @Override
-//    public String toString() {
-//        return "com.mycompany.entity.Employee[ id=" + id + " ]";
-//    }
-//
 }

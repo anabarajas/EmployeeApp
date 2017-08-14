@@ -5,10 +5,7 @@
  */
 package com.employeeApp.eao;
 
-import com.employeeApp.entity.EDepartment;
-import com.employeeApp.entity.EEmployeePosition;
-import com.employeeApp.entity.EEmployeeStatus;
-import com.employeeApp.entity.Employee;
+import com.employeeApp.entity.*;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -41,7 +38,7 @@ public class EmployeeManagerBean implements Serializable {
         LOG.log(Level.INFO, "Removed employee {0} {1}, with id: {2}", new Object[]{e.getFirstName(), e.getLastName(), e.getId()});
     }
 
-    public void updateEmployee(Employee employee , String firstName, String lastName, String country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status) {
+    public void updateEmployee(Employee employee , String firstName, String lastName, ECountry country, Date dateOfBirth, EDepartment department, EEmployeePosition position, Date startDate, EEmployeeStatus status) {
         try {
             employee.setFirstName(firstName);
             employee.setLastName(lastName);
@@ -65,7 +62,7 @@ public class EmployeeManagerBean implements Serializable {
     }
 
 
-    public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, String country, EEmployeePosition position, EDepartment department, Date startDate) {
+    public Employee createEmployee(String firstName, String lastName, Date dateOfBirth, ECountry country, EEmployeePosition position, EDepartment department, Date startDate) {
         Employee e = new Employee();
         try {
             e.setFirstName(firstName);
@@ -85,9 +82,9 @@ public class EmployeeManagerBean implements Serializable {
         return e;
     }
 
-    private EEmployeeStatus determineNewEmployeeStatus(String country) {
+    private EEmployeeStatus determineNewEmployeeStatus(ECountry country) {
         EEmployeeStatus employeeStatus;
-        if (country.equals("United States") || country.equals("Canada")){
+        if (country == ECountry.US || country == ECountry.CA){
             employeeStatus = EEmployeeStatus.ACTIVE;
         } else {
             employeeStatus = EEmployeeStatus.PENDING;

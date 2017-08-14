@@ -1,5 +1,6 @@
 package com.EmployeeApp.rest;
 
+import com.employeeApp.entity.ECountry;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.EEmployeeStatus;
@@ -21,7 +22,7 @@ public class EmployeeRepresentation {
     @XmlElement(required=true)
     private String lastName;
     @XmlElement(required=true)
-    private String country;
+    private ECountry country;
     @XmlElement
     private Date dateOfBirth;
     @XmlElement
@@ -60,11 +61,11 @@ public class EmployeeRepresentation {
         this.lastName = lastName;
     }
 
-    public String getCountry() {
+    public ECountry getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(ECountry country) {
         this.country = country;
     }
 

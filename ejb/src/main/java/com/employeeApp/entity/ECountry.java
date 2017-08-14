@@ -34,7 +34,7 @@ public enum ECountry {
         BM("BERMUDA"),
         BN("BRUNEI DARUSSALAM"),
         BO("BOLIVIA"),
-        BQ("Bonaire, Sint Eustatius and Saba"),
+        BQ("BONAIRE, SAINT EUSTATIUS AND SABA"),
         BR("BRAZIL"),
         BS("BAHAMAS"),
         BT("BHUTAN"),
@@ -103,7 +103,7 @@ public enum ECountry {
         HK("HONG KONG"),
         HM("HEARD AND MC DONALD ISLANDS"),
         HN("HONDURAS"),
-        HR("CROATIA (local name: Hrvatska)"),
+        HR("CROATIA (HRVATSKA)"),
         HT("HAITI"),
         HU("HUNGARY"),
         ID("INDONESIA"),
@@ -207,7 +207,7 @@ public enum ECountry {
         SH("ST. HELENA"),
         SI("SLOVENIA"),
         SJ("SVALBARD AND JAN MAYEN ISLANDS"),
-        SK("SLOVAKIA (Slovak Republic)"),
+        SK("SLOVAKIA (SLOVAK REPUBLIC)"),
         SL("SIERRA LEONE"),
         SM("SAN MARINO"),
         SN("SENEGAL"),
@@ -216,7 +216,7 @@ public enum ECountry {
         SS("SOUTH SUDAN"),
         ST("SAO TOME AND PRINCIPE"),
         SV("EL SALVADOR"),
-        SX("Sint Maarten"),
+        SX("SINT MAARTEN"),
         SY("SYRIAN ARAB REPUBLIC"),
         SZ("SWAZILAND"),
         TC("TURKS AND CAICOS ISLANDS"),
@@ -259,9 +259,13 @@ public enum ECountry {
         ZW("ZIMBABWE"),
         _O("OTHERS");
 
-    String name;
+        String name;
 
-    ECountry(String name) {
-        this.name = name;
-    }
+        ECountry(String name) {
+                this.name = name;
+        }
+
+        public String getName() {
+                return name;
+        }
 }

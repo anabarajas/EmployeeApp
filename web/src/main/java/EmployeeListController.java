@@ -1,8 +1,5 @@
 import com.employeeApp.eao.EmployeeManagerBean;
-import com.employeeApp.entity.EDepartment;
-import com.employeeApp.entity.EEmployeePosition;
-import com.employeeApp.entity.EEmployeeStatus;
-import com.employeeApp.entity.Employee;
+import com.employeeApp.entity.*;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -34,20 +31,28 @@ public class EmployeeListController implements Serializable {
     private List<String> departments;
     private List<String> positions;
     private List<String> statuses;
+    private List<String> countries;
+
+    EmployeeListController(){
+        departments = Stream.of(EDepartment.values())
+                .map(d->d.getName())
+                .collect(Collectors.toList());
+        positions = Stream.of(EEmployeePosition.values())
+                .map(p->p.getName())
+                .collect(Collectors.toList());
+        statuses = Stream.of(EEmployeeStatus.values())
+                .map(s->s.getName())
+                .collect(Collectors.toList());
+        countries = Stream.of(ECountry.values())
+                .map(c->c.getName())
+                .sorted()
+                .collect(Collectors.toList());
+    }
 
     public void onPageLoad() {
         employees = employeeManagerBean.findAllEmployees();
-        departments = Stream.of(EDepartment.values())
-                .map(EDepartment::toString)
-                .collect(Collectors.toList());
-        positions = Stream.of(EEmployeePosition.values())
-                .map(EEmployeePosition::toString)
-                .collect(Collectors.toList());
-        statuses = Stream.of(EEmployeeStatus.values())
-                .map(EEmployeeStatus::toString)
-                .collect(Collectors.toList());
     }
-    
+
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -62,5 +67,9 @@ public class EmployeeListController implements Serializable {
 
     public List<String> getStatuses() {
         return statuses;
+    }
+
+    public List<String> getCountries() {
+        return countries;
     }
 }

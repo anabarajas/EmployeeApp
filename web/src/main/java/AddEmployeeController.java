@@ -1,4 +1,5 @@
 import com.employeeApp.eao.EmployeeManagerBean;
+import com.employeeApp.entity.ECountry;
 import com.employeeApp.entity.EDepartment;
 import com.employeeApp.entity.EEmployeePosition;
 import com.employeeApp.entity.Employee;
@@ -24,7 +25,7 @@ public class AddEmployeeController implements Serializable {
     private String firstName;
     private String lastName;
     private Date dateOfBirth;
-    private String country;
+    private ECountry country;
     private EDepartment department;
     private EEmployeePosition position;
     private Date startDate;
@@ -71,11 +72,11 @@ public class AddEmployeeController implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public String getCountry() {
+    public ECountry getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(ECountry country) {
         this.country = country;
     }
 

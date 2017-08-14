@@ -10,12 +10,24 @@ package com.employeeApp.entity;
  * @author AnaCris
  */
 public enum EEmployeePosition {
-    MANAGER,
-    ANALYST,
-    TECH_TEAM_LEAD,
-    PRODUCT_OWNER,
-    JAVA_DEV,
-    SUPERVISOR,
-    COOP_DEV,
-    COOP_QA;   
+    MANAGER("MANAGER"),
+    ANALYST("ANALYST"),
+    TECH_TEAM_LEAD("TECHNICAL TEAM LEAD"),
+    PRODUCT_OWNER("PRODUCT OWNER"),
+    JAVA_DEVELOPER("JAVA DEVELOPER"),
+    QA("QA"),
+    DEV_OPS("DEV OPS"),
+    SUPERVISOR("SUPERVISOR"),
+    COOP_DEVELOPER("COOP DEVELOPER"),
+    COOP_QA("COOP QA");
+
+    String name;
+
+    EEmployeePosition(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

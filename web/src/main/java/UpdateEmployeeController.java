@@ -1,8 +1,5 @@
 import com.employeeApp.eao.EmployeeManagerBean;
-import com.employeeApp.entity.EDepartment;
-import com.employeeApp.entity.EEmployeePosition;
-import com.employeeApp.entity.EEmployeeStatus;
-import com.employeeApp.entity.Employee;
+import com.employeeApp.entity.*;
 import com.employeeApp.service.EmployeeServiceBean;
 
 import javax.enterprise.context.SessionScoped;
@@ -37,7 +34,7 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
     private String lastName;
     private Date dateOfBirth;
     private Date startDate;
-    private String country;
+    private ECountry country;
     private EDepartment department;
     private EEmployeePosition position;
     private EEmployeeStatus status;
@@ -142,11 +139,11 @@ public class UpdateEmployeeController extends AbstractEmployeeController impleme
         this.startDate = startDate;
     }
 
-    public String getCountry() {
+    public ECountry getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(ECountry country) {
         this.country = country;
     }
 

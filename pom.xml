@@ -10,6 +10,7 @@
     <module>ear</module>
     <module>web</module>
     <module>ejb</module>
+    <module>rest</module>
   </modules>
   <dependencyManagement>
     <dependencies>

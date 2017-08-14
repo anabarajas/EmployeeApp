@@ -45,6 +45,12 @@
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!--JSON provider - MOXy-->
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+            <version>2.26-b09</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

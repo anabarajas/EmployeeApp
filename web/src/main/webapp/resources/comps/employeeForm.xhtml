@@ -37,10 +37,6 @@
                               show-date="true"
                               show-time="false"
                               mask="true"/>
-            <b:inputText placeholder="Country of Birth"
-                         label="Country of Birth:"
-                         value="#{cc.attrs.employeeCountryOfBirth}">
-            </b:inputText>
             <b:dateTimePicker value="#{cc.attrs.employeeStartDate}"
                               label="Start Date:"
                               allow-input-toggle="true"
@@ -49,6 +45,13 @@
                               mask="true"/>
         </b:panel>
         <b:panel>
+            <h:outputLabel id="employeeCountryDropdown" styleClass="control-label" value="Country of Birth" for="country"/>
+            <div class="controls">
+                <h:selectOneMenu id="country" value="#{cc.attrs.employeeCountryOfBirth}">
+                    <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
+                    <f:selectItems value="#{employeeListController.countries}"/>
+                </h:selectOneMenu>
+            </div>
             <h:outputLabel id="employeeDepartmentDropdown" styleClass="control-label" value="Department:" for="department"/>
             <div class="controls">
                 <h:selectOneMenu id="department" value="#{cc.attrs.employeeDepartment}">

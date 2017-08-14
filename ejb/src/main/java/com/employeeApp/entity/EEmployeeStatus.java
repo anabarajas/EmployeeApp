@@ -10,7 +10,17 @@ package com.employeeApp.entity;
  * @author AnaCris
  */
 public enum EEmployeeStatus {
-    ACTIVE,
-    PENDING,
-    DISABLED;
+    ACTIVE("ACTIVE"),
+    PENDING("PENDING"),
+    DISABLED("DISABLED");
+
+    String name;
+
+    EEmployeeStatus(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }
