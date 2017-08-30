@@ -10,7 +10,7 @@
 <h:body>
     <ui:composition template="template.xhtml">
         <ui:define name="metadata">
-            <f:event type="preRenderView" listener="#{employeeListController.onPageLoad}"/>
+            <f:event type="preRenderView" listener="#{employeesController.onPageLoad}"/>
         </ui:define>
         <ui:define name="title">EmployeeApp</ui:define>
         <ui:define name="pageTitle">Current Employees</ui:define>
@@ -24,7 +24,7 @@
             <br/>
             <p:dataTable id="employeesTable"
                          var="employee"
-                         value="#{employeeListController.employees}">
+                         value="#{employeesController.employees}">
                 <p:column headerText="Employee Id"
                           sortBy="#{employee.id}"
                           id="employeeIdColumn">

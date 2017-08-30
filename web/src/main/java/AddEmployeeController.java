@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Named(value = "addEmployeeController")
 @SessionScoped
-public class AddEmployeeController implements Serializable {
+public class AddEmployeeController extends AbstractEmployeeController implements Serializable {
 
     @Inject
     private EmployeeManagerBean employeeManagerBean;
@@ -30,7 +30,7 @@ public class AddEmployeeController implements Serializable {
     private EEmployeePosition position;
     private Date startDate;
 
-    public void pageFieldsCleanUp() {
+    public void cleanUp() {
         employee = null;
         id = null;
         firstName = null;

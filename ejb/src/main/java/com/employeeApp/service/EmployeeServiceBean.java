@@ -25,6 +25,8 @@ import java.util.logging.Logger;
 @Stateless
 public class EmployeeServiceBean implements Serializable {
 
+    private static final Logger LOG = Logger.getLogger(EmployeeServiceBean.class.getName());
+
     @EJB
     private EmployeeManagerBean employeeManagerBean;
 
@@ -37,13 +39,16 @@ public class EmployeeServiceBean implements Serializable {
 
     public Employee updateEmployeeById(Long currentEmployeeId, Employee updatedEmployee) {
         Employee currentEmployee = employeeManagerBean.findById(currentEmployeeId);
-        if (currentEmployee != null) {
-            employeeManagerBean.updateEmployee(currentEmployee, updatedEmployee.getFirstName(), updatedEmployee.getLastName(),
-                    updatedEmployee.getCountry(), updatedEmployee.getDateOfBirth(), updatedEmployee.getDepartment(),
-                    updatedEmployee.getPosition(), updatedEmployee.getStartDate(), updatedEmployee.getStatus());
+        try {
+            if (currentEmployee != null) {
+                employeeManagerBean.updateEmployee(currentEmployee, updatedEmployee.getFirstName(), updatedEmployee.getLastName(),
+                        updatedEmployee.getCountry(), updatedEmployee.getDateOfBirth(), updatedEmployee.getDepartment(),
+                        updatedEmployee.getPosition(), updatedEmployee.getStartDate(), updatedEmployee.getStatus());
+            }
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "EmployeeServiceBean:: error while updating employee {0}, error message: {1}", new Object[]{currentEmployee.getId(), ex.getMessage()});
         }
         return currentEmployee;
     }
-
 }
 

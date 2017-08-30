@@ -10,7 +10,7 @@
     <ui:composition template="template.xhtml">
         <ui:define name="metadata">
             <f:metadata>
-                <f:event type="preRenderView" listener="#{addEmployeeController.pageFieldsCleanUp}"/>
+                <f:event type="preRenderView" listener="#{addEmployeeController.cleanUp}"/>
             </f:metadata>
         </ui:define>
         <ui:define name="title">Add Employee</ui:define>
@@ -27,18 +27,15 @@
                                     employeeStartDate="#{addEmployeeController.startDate}"
                 />
                 <div class="row">
-                    <div class="form-actions">
-                        <h:button id="backToList"
+                        <h:commandButton id="backToList"
                                          value="Back to List"
-                                         outcome="list"
+                                         action="#{addEmployeeController.returnToList}"
                                          styleClass="btn form-button"/>
                         <h:commandButton id="addEmployee"
                                          action="#{addEmployeeController.addNewEmployee}"
                                          styleClass="btn btn-primary"
                                          value="Create">
-                            <f:param name="addEmployeeId" value="#{addEmployeeController.id}"/>
                         </h:commandButton>
-                    </div>
                 </div>
             </h:form>
         </ui:define>

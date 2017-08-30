@@ -45,35 +45,39 @@
                               mask="true"/>
         </b:panel>
         <b:panel>
-            <h:outputLabel id="employeeCountryDropdown" styleClass="control-label" value="Country of Birth" for="country"/>
-            <div class="controls">
-                <h:selectOneMenu id="country" value="#{cc.attrs.employeeCountryOfBirth}">
-                    <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
-                    <f:selectItems value="#{employeeListController.countries}"/>
-                </h:selectOneMenu>
-            </div>
-            <h:outputLabel id="employeeDepartmentDropdown" styleClass="control-label" value="Department:" for="department"/>
-            <div class="controls">
-                <h:selectOneMenu id="department" value="#{cc.attrs.employeeDepartment}">
-                    <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
-                    <f:selectItems value="#{employeeListController.deparments}"/>
-                </h:selectOneMenu>
-            </div>
             <h:panelGroup>
-                <h:outputLabel id="employeePositionDropdown" styleClass="control-label" value="Position: " for="position"/>
+                <h:outputLabel id="employeeCountryDropdown" styleClass="control-label" value="Country of Birth" for="countries"/>
                 <div class="controls">
-                    <h:selectOneMenu id="position" value="#{cc.attrs.employeePosition}">
+                    <h:selectOneMenu id="countries" value="#{cc.attrs.employeeCountryOfBirth}">
                         <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
-                        <f:selectItems value="#{employeeListController.positions}"/>
+                        <f:selectItems value="#{employeesController.countries}" var="country" itemValue="#{country}" itemLabel="#{country.name}"/>
+                    </h:selectOneMenu>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:outputLabel id="employeeDepartmentDropdown" styleClass="control-label" value="Department:" for="departments"/>
+                <div class="controls">
+                    <h:selectOneMenu id="departments" value="#{cc.attrs.employeeDepartment}">
+                        <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
+                        <f:selectItems value="#{employeesController.departments}" var="department" itemValue="#{department}" itemLabel="#{department.name}"/>
+                    </h:selectOneMenu>
+                </div>
+            </h:panelGroup>
+            <h:panelGroup>
+                <h:outputLabel id="employeePositionDropdown" styleClass="control-label" value="Position: " for="positions"/>
+                <div class="controls">
+                    <h:selectOneMenu id="positions" value="#{cc.attrs.employeePosition}">
+                        <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
+                        <f:selectItems value="#{employeesController.employeePositions}" var="position" itemValue="#{position}" itemLabel="#{position.name}" />
                     </h:selectOneMenu>
                 </div>
             </h:panelGroup>
             <h:panelGroup rendered="#{cc.attrs.isUpdatingEmployee}">
-                <h:outputLabel id="employeeStatusDropdown" styleClass="control-label" value="Status:" for="status"/>
+                <h:outputLabel id="employeeStatusDropdown" styleClass="control-label" value="Status:" for="statuses"/>
                 <div class="controls">
-                    <h:selectOneMenu id="status" value="#{cc.attrs.employeeStatus}">
+                    <h:selectOneMenu id="statuses" value="#{cc.attrs.employeeStatus}">
                         <f:selectItem value="#{null}" itemLabel="SELECT" noSelectionOption="true"/>
-                        <f:selectItems value="#{employeeListController.statuses}"/>
+                        <f:selectItems value="#{employeesController.employeeStatuses}" var="status" itemValue="#{status}" itemLabel="#{status.name}"/>
                     </h:selectOneMenu>
                 </div>
             </h:panelGroup>
