@@ -18,7 +18,7 @@ public class Utils implements Serializable {
     }
 
     public String formatDate(Date date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
         return dateFormat.format(date);
     }
 }

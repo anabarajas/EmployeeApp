@@ -44,6 +44,7 @@ public class EmployeeResource {
 
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response createEmployee(EmployeeRepresentation representation) {
         EmployeeRepresentation employee = employeeResourceService.createEmployeeWithNewId(representation);
         return Response.created(URI.create("/employees/" + employee.getId())).entity(employee).build();
@@ -53,6 +54,7 @@ public class EmployeeResource {
     @PUT
     @Path("/{id}")
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response updateEmployee(@PathParam("id") Long existingEmployeeId, EmployeeRepresentation updatedFieldsRepresentation) {
         if (updatedFieldsRepresentation != null) { // TODO::add here validation for representation
             EmployeeRepresentation updatedEmployeeRepresentation = employeeResourceService.updateEmployeeById(existingEmployeeId, updatedFieldsRepresentation);

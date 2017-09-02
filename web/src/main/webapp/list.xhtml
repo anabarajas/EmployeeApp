@@ -41,12 +41,12 @@
                 <p:column headerText="Date of Birth"
                           sortBy="#{employee.dateOfBirth}"
                           id="employeeDateOfBirthColumn">
-                    <h:outputText value="#{utils.formatDateWithTime(employee.dateOfBirth)}"/>
+                    <h:outputText value="#{utils.formatDate(employee.dateOfBirth)}"/>
                 </p:column>
                 <p:column headerText="Country"
                           sortBy="#{employee.country}"
                           id="employeeCountryColumn">
-                    <h:outputText value="#{employee.country}"/>
+                    <h:outputText value="#{employee.country.name}"/>
                 </p:column>
                 <p:column headerText="Status"
                           sortBy="#{employee.status}"
@@ -56,17 +56,17 @@
                 <p:column headerText="Start Date"
                           sortBy="#{employee.startDate}"
                           id="employeeStartDateColumn">
-                    <h:outputText value="#{utils.formatDateWithTime(employee.startDate)}"/>
+                    <h:outputText value="#{utils.formatDate(employee.startDate)}"/>
                 </p:column>
                 <p:column headerText="Department"
                           sortBy="#{employee.department}"
                           id="employeeDepartmentColumn">
-                    <h:outputText value="#{employee.department}"/>
+                    <h:outputText value="#{employee.department.name}"/>
                 </p:column>
                 <p:column headerText="Position"
                           sortBy="#{employee.position}"
                           id="employeePositionColumn">
-                    <h:outputText value="#{employee.position}"/>
+                    <h:outputText value="#{employee.position.name}"/>
                 </p:column>
             </p:dataTable>
             <br/>
