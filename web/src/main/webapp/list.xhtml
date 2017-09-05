@@ -21,30 +21,31 @@
                     <li class="active"><a href="add.xhtml">Add New Employee <span class="sr-only">(current)</span></a></li>
                 </ul>
                 <div class="nav navbar-nav navbar-right">
-                    <h:form>
-                        <div class="input-group">
-                            <div class="nav navbar-nav navbar-left">
+                    <div class="input-group">
+                        <div class="navbar-form navbar-left">
+                            <h:form>
                                 <div class="controls">
                                     <b:selectOneMenu value="#{employeesController.searchField}" id="field">
-                                        <f:selectItem value="#{null}" noSelectionOption="true" itemLabel="Search by..."/>
+                                        <f:selectItem value="#{null}" noSelectionOption="true" itemValue="#{null}" itemLabel="Search by..."/>
                                         <f:selectItems value="#{employeesController.searchFields}" var="searchField" itemValue="#{searchField}" itemLabel="#{searchField.name}"/>
                                     </b:selectOneMenu>
+                                    <b:inputText placeholder="Search term..."
+                                                 value="#{employeesController.searchWord}"/>
+                                    <h:commandLink id="searchWordButton"
+                                                   action="#{employeesController.searchForEmployee}"
+                                                   styleClass="btn btn-success">
+                                        <i class="glyphicon glyphicon-search"/>
+                                    </h:commandLink>
+                                    <h:commandButton id="clearSearchButton"
+                                                     action="list?faces-redirect=true"
+                                                     styleClass="btn"
+                                                     value="Clear"/>
                                 </div>
-                            </div>
-                            <div class="navbar-form navbar-right">
-                                <b:inputText placeholder="Search term..."
-                                             value="#{employeesController.searchWord}"/>
-                                <h:commandButton id="searchWordButton"
-                                                 action="#{employeesController.searchForEmployee}"
-                                                 styleClass="btn form-button"
-                                                 value="search"/>
-                                <h:commandButton id="clearSearchButton"
-                                                 action="list?faces-redirect=true"
-                                                 styleClass="btn form-button"
-                                                 value="clear"/>
-                            </div>
+                            </h:form>
                         </div>
-                    </h:form>
+
+                    </div>
+
                 </div>
             </div>
         </ui:define>
