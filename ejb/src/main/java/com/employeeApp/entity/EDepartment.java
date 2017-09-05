@@ -5,6 +5,8 @@
  */
 package com.employeeApp.entity;
 
+import java.util.Arrays;
+
 /**
  *
  * @author AnaCris
@@ -24,5 +26,9 @@ public enum EDepartment {
 
     public String getName() {
         return name;
+    }
+
+    public static EDepartment getEDepartmentFromString(String stringName) {
+        return Arrays.stream(EDepartment.values()).filter(d -> d.name.equalsIgnoreCase(stringName)).findFirst().orElse(null);
     }
 }

@@ -1,5 +1,7 @@
 package com.employeeApp.entity;
 
+import java.util.Arrays;
+
 /**
  * Created by abarajas on 8/8/17.
  */
@@ -267,5 +269,9 @@ public enum ECountry {
 
         public String getName() {
                 return name;
+        }
+
+        public static ECountry getECountryFromString(String stringName) {
+                return Arrays.stream(ECountry.values()).filter(e -> e.name.equalsIgnoreCase(stringName)).findAny().orElse(null);
         }
 }

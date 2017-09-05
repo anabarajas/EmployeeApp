@@ -7,8 +7,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,12 +25,55 @@ public class EmployeesController implements Serializable {
     @Inject
     private EmployeeManagerBean employeeManagerBean;
     
-    private List<Employee> employees = new ArrayList<Employee>();;
+    private List<Employee> employees = new ArrayList<>();
+    private ESearchField searchField;
+    private String searchWord;
+    private Boolean isSearchResult;
 
-    EmployeesController(){}
+    EmployeesController(){
+        searchWord = "";
+        searchField = null;
+        isSearchResult = false;
+    }
 
     public void onPageLoad() {
-        employees = employeeManagerBean.findAllEmployees();
+        if (!isSearchResult) {
+            employees = employeeManagerBean.findAllEmployees();
+            searchField = null;
+            searchWord = null;
+        } else {
+            isSearchResult = false;
+        }
+    }
+
+    public String searchForEmployee() {
+        if (searchWord != null && !searchWord.isEmpty()) {
+            isSearchResult = true;
+            switch (searchField) {
+                case FIRST_NAME:
+                    employees = employeeManagerBean.findByFirstName(searchWord);
+                    break;
+                case LAST_NAME:
+                    employees = employeeManagerBean.findByLastName(searchWord);
+                    break;
+                case COUNTRY:
+                    employees = employeeManagerBean.findByCountry(ECountry.getECountryFromString(searchWord));
+                    break;
+                case DEPARTMENT:
+                    employees = employeeManagerBean.findByDepartment(EDepartment.getEDepartmentFromString(searchWord));
+                    break;
+                case STATUS:
+                    employees = employeeManagerBean.findByStatus(EEmployeeStatus.getEEmployeeStatusFromString(searchWord));
+                    break;
+                case POSITION:
+                    employees = employeeManagerBean.findByPosition(EEmployeePosition.getEEmployeePositionFromString(searchWord));
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        return "list?faces-redirect=true";
     }
 
     public List<Employee> getEmployees() {
@@ -55,4 +96,23 @@ public class EmployeesController implements Serializable {
         return ECountry.values();
     }
 
+    public ESearchField[] getSearchFields() {
+        return ESearchField.values();
+    }
+
+    public ESearchField getSearchField() {
+        return searchField;
+    }
+
+    public void setSearchField(ESearchField searchField) {
+        this.searchField = searchField;
+    }
+
+    public String getSearchWord() {
+        return searchWord;
+    }
+
+    public void setSearchWord(String searchWord) {
+        this.searchWord = searchWord;
+    }
 }

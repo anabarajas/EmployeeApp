@@ -1,13 +1,14 @@
 package com.EmployeeApp.rest;
 
-import com.employeeApp.entity.Employee;
+import com.sun.org.apache.regexp.internal.RE;
 
-import javax.validation.ConstraintViolationException;
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.net.URI;
-import java.util.logging.Level;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -26,6 +27,21 @@ public class EmployeeResource {
 
     private void initializeDependencies() {
         employeeResourceService = new EmployeeResourceService();
+    }
+
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response getEmployees(){
+        List<EmployeeRepresentation> employees = employeeResourceService.getAllEmployees();
+        if (employees != null && !employees.isEmpty()) {
+
+            return Response.ok(employees.toArray(new EmployeeRepresentation[employees.size()])).build();
+//            GenericEntity<List<EmployeeRepresentation>> entityList =
+//                    new GenericEntity<List<EmployeeRepresentation>>(employees){};
+//            return Response.ok().entity(entityList).build();
+        } else {
+            throw new WebApplicationException(Response.Status.NOT_FOUND);
+        }
     }
 
     @GET

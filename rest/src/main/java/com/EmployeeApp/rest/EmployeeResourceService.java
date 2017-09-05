@@ -9,8 +9,10 @@ import javax.naming.NamingException;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Created by abarajas on 6/22/17.
@@ -31,6 +33,13 @@ public class EmployeeResourceService {
         } catch (NamingException e) {
             LOG.log(Level.WARNING, "EmployeeResourceService:: failed to lookup ejb's", e.getExplanation());
         }
+    }
+
+    public List<EmployeeRepresentation> getAllEmployees() {
+         return employeeManagerBean.findAllEmployees()
+                 .stream()
+                 .map(EmployeeRepresentationConverter::getEmployeeRepresentationFromEmployee)
+                 .collect(Collectors.toList());
     }
 
     public EmployeeRepresentation getEmployeeById(Long id) {

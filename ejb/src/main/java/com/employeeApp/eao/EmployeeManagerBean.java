@@ -109,53 +109,53 @@ public class EmployeeManagerBean implements Serializable {
         }
     }
 
-    public Employee findByFirstName(String firstName) {
+    public List<Employee> findByFirstName(String firstName) {
         Query q = em.createNamedQuery("Employee.findByFirstName");
         q.setParameter("firstName", firstName);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
 
     }
 
-    public Employee findByLastName(String lastName) {
+    public List<Employee> findByLastName(String lastName) {
         Query q = em.createNamedQuery("Employee.findByLastName");
         q.setParameter("lastName", lastName);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
 
     }
 
-    public Employee findByDateOfBirth(Date dateOfBirth) {
+    public List<Employee> findByDateOfBirth(Date dateOfBirth) {
         Query q = em.createNamedQuery("Employee.findByDateOfBirth");
         q.setParameter("dateOfBirth", dateOfBirth);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 
-    public Employee findByCountry(String country) {
+    public List<Employee> findByCountry(ECountry country) {
         Query q = em.createNamedQuery("Employee.findByCountry");
         q.setParameter("country", country);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 
-    public Employee findByStatus(String status) {
+    public List<Employee> findByStatus(EEmployeeStatus status) {
         Query q = em.createNamedQuery("Employee.findByStatus");
         q.setParameter("status", status);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 
-    public Employee findByPosition(String position) {
+    public List<Employee> findByPosition(EEmployeePosition position) {
         Query q = em.createNamedQuery("Employee.findByPosition");
         q.setParameter("position", position);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 
-    public Employee findByDepartment(String department) {
+    public List<Employee> findByDepartment(EDepartment department) {
         Query q = em.createNamedQuery("Employee.findByDepartment");
         q.setParameter("department", department);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 
-    public Employee findByStartDate(Date startDate) {
+    public List<Employee> findByStartDate(Date startDate) {
         Query q = em.createNamedQuery("Employee.findByStartDate");
         q.setParameter("startDate", startDate);
-        return (Employee) q.getSingleResult();
+        return q.getResultList();
     }
 }
