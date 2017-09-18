@@ -1,1 +1,1 @@
-# JavaEE-Project-Template
+# EmployeeApp
